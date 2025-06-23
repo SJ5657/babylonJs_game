@@ -5,6 +5,7 @@ const app = express('app');
 app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname), 'views');
+app.use('/js', path.join('public/js'));
 
 app.get('/', (req, res) => res.render('index'));
 
