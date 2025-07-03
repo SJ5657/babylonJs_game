@@ -1,1 +1,70 @@
-console.log("test");
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/Addons.js';
+
+// 씬 생성
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xcccccc);
+
+// 카메라
+const camera = new THREE.PerspectiveCamera(
+    60, 
+    window.innerWidth / window.innerHeight, 
+    0.1, 
+    100
+);
+camera.position.set(15, 15, 15);
+camera.lookAt(0, 0, 0);
+
+// 렌더러
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+const viewer = document.querySelector('#viewer');
+if(viewer){
+    viewer.appendChild(renderer.domElement);
+}else{
+    document.querySelector('body').appendChild(renderer.domElement);
+}
+
+
+//조명
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(10, 10, 10,);
+scene.add(directionalLight);
+
+//바닥(plane) 생성
+const floorGeometry = new THREE.PlaneGeometry(30, 30);
+const floorMaterial = new THREE.MeshStandardMaterial({ 
+    color: 0x888888,
+    side: THREE.DoubleSide
+});
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+scene.add(floor);
+
+// OrbitControls 다음과 같은 기능을 제공한다.
+// 마우스 드래그로 카메라를 중심 객체 중변으로 회전
+// shift + 드래그 또는 오른쪽 클릭으로 카메라 편행 이동
+// Damping 부드러운 감속 효과
+const controls = new OrbitControls(camera, renderer.domElement);
+
+//애니메이션 루프
+function animate(){
+    //브라우저 내장함수
+    //매프레임마다, 콜백 함수 호출 
+    //화면 렌더 함수를 콜백 함수로 주어, 매프레임 끝나면 자동으로 다음 프레임을 호출되게 설정 
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+};
+
+animate();
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    //투영 행렬(시야각, 동횡비 등) 갱신시 사용하는 메소드
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+})
+
