@@ -9,4 +9,4 @@ app.use('/js', express.static(path.join(__dirname,'public/js')));
 
 app.get('/', (req, res) => res.render('index'));
 
-app.listen(3232, () => console.log('Server running on port 30232'));
+app.listen(3232, () => console.log('Server running on port 3232'));
