@@ -2,6 +2,92 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./client/mesh/plane.js":
+/*!******************************!*\
+  !*** ./client/mesh/plane.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FloorMesh)
+/* harmony export */ });
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
+
+
+class FloorMesh {
+    static create = ({
+        position = { x: 0, y: 0, z: 0 }, 
+        size={ width: 5, height: 5 }, 
+        option = { color: 0x444444, side: true}
+    }) => {
+        const { x, y, z } = position;
+        const { width, height } = size;
+        const { color, side } = option;
+        const geometry = new three__WEBPACK_IMPORTED_MODULE_0__.PlaneGeometry(width, height);
+        const material = new three__WEBPACK_IMPORTED_MODULE_0__.MeshStandardMaterial({
+            color,
+            side
+        });
+        const mesh = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(geometry, material);
+        mesh.rotation.x = -Math.PI / 2;
+        mesh.position.set(x, y, z);
+        return mesh;
+    };
+}
+
+/***/ }),
+
+/***/ "./client/mesh/shape.js":
+/*!******************************!*\
+  !*** ./client/mesh/shape.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ShapeMesh)
+/* harmony export */ });
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
+
+
+class ShapeMesh {
+    static create = ({
+        points = [],
+        position = { x:0, y:0, z:0 }, 
+        option = {
+            color: 0x888888,
+            side: true
+        }
+    }) => {
+        const _points = points;
+        const { x, z, y } = position;
+        const { color, side } = option;
+
+        if(!_points || _points.length < 3) return;
+
+        const shape = new three__WEBPACK_IMPORTED_MODULE_0__.Shape();
+        shape.moveTo(_points[0]["x"], _points[0]["y"]);
+
+        for(let i = 1 ; i < _points.length ; i++){
+            shape.lineTo(_points[i]["x"], _points[i]["y"]);
+        };
+
+        const geometry = new three__WEBPACK_IMPORTED_MODULE_0__.ShapeGeometry(shape);
+        const material = new three__WEBPACK_IMPORTED_MODULE_0__.MeshStandardMaterial({
+            color,
+            side : side ? three__WEBPACK_IMPORTED_MODULE_0__.DoubleSide : three__WEBPACK_IMPORTED_MODULE_0__.FrontSide
+        });
+        const mesh = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(geometry, material);
+        mesh.rotation.x = -Math.PI / 2;
+        mesh.position.set(x, z, y);
+        
+        return mesh;
+    }
+}
+
+/***/ }),
+
 /***/ "./node_modules/three/build/three.core.js":
 /*!************************************************!*\
   !*** ./node_modules/three/build/three.core.js ***!
@@ -79040,28 +79126,34 @@ var __webpack_exports__ = {};
   !*** ./client/index.js ***!
   \*************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_Addons_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! three/examples/jsm/Addons.js */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
+/* harmony import */ var three_examples_jsm_Addons_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! three/examples/jsm/Addons.js */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
+/* harmony import */ var _mesh_plane__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mesh/plane */ "./client/mesh/plane.js");
+/* harmony import */ var _mesh_shape__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mesh/shape */ "./client/mesh/shape.js");
 
 
+
+
+
+console.log(_mesh_plane__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 // 씬 생성
-const scene = new three__WEBPACK_IMPORTED_MODULE_0__.Scene();
-scene.background = new three__WEBPACK_IMPORTED_MODULE_0__.Color(0xcccccc);
+const scene = new three__WEBPACK_IMPORTED_MODULE_2__.Scene();
+scene.background = new three__WEBPACK_IMPORTED_MODULE_2__.Color(0xcccccc);
 
 // 카메라
-const camera = new three__WEBPACK_IMPORTED_MODULE_0__.PerspectiveCamera(
+const camera = new three__WEBPACK_IMPORTED_MODULE_2__.PerspectiveCamera(
     60, 
     window.innerWidth / window.innerHeight, 
     0.1, 
-    100
+    1000
 );
-camera.position.set(15, 15, 15);
+camera.position.set(0, 500, 0);
 camera.lookAt(0, 0, 0);
 
 // 렌더러
-const renderer = new three__WEBPACK_IMPORTED_MODULE_1__.WebGLRenderer({ antialias: true });
+const renderer = new three__WEBPACK_IMPORTED_MODULE_3__.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 const viewer = document.querySelector('#viewer');
 if(viewer){
@@ -79072,28 +79164,94 @@ if(viewer){
 
 
 //조명
-const ambientLight = new three__WEBPACK_IMPORTED_MODULE_0__.AmbientLight(0xffffff, 0.5);
+const ambientLight = new three__WEBPACK_IMPORTED_MODULE_2__.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
-const directionalLight = new three__WEBPACK_IMPORTED_MODULE_0__.DirectionalLight(0xffffff, 1);
-directionalLight.position.set(10, 10, 10,);
+const directionalLight = new three__WEBPACK_IMPORTED_MODULE_2__.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(10, 10, 10);
 scene.add(directionalLight);
 
 //바닥(plane) 생성
-const floorGeometry = new three__WEBPACK_IMPORTED_MODULE_0__.PlaneGeometry(30, 30);
-const floorMaterial = new three__WEBPACK_IMPORTED_MODULE_0__.MeshStandardMaterial({ 
-    color: 0x888888,
-    side: three__WEBPACK_IMPORTED_MODULE_0__.DoubleSide
+const base = _mesh_plane__WEBPACK_IMPORTED_MODULE_0__["default"].create({
+    position: { x: 0, y: 0, z: 0 },
+    size: { width: 500, height: 500 },
+    option: { color: 0x444444, side:true }
 });
-const floor = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(floorGeometry, floorMaterial);
-floor.rotation.x = -Math.PI / 2;
-scene.add(floor);
+
+scene.add(base);
+
+
+
+const rooms = [
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 270},
+            {x: 150, y: 270},
+            {x: 150, y: 0},
+        ],
+        position: {
+            x: -80,
+            z: 5,
+            y: 100
+        }
+    },
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 30},
+            {x: 50, y: 30},
+            {x: 50, y: 0},
+        ],
+        position: {
+            x: -80,
+            z: 5,
+            y: -170
+        }
+    },
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 30},
+            {x: 35, y: 30},
+            {x: 35, y: 0},
+        ],
+        position: {
+            x: -30,
+            z: 5,
+            y: -170
+        }
+    },
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 30},
+            {x: 190, y: 30},
+            {x: 190, y: 0},
+        ],
+        position: {
+            x: 5,
+            z: 5,
+            y: -170
+        }
+    },
+
+]
+
+rooms.forEach(room => {
+    const mesh = _mesh_shape__WEBPACK_IMPORTED_MODULE_1__["default"].create({points: room["points"], position: room["position"]});
+    scene.add(mesh);
+})
+
+
+
+
 
 // OrbitControls 다음과 같은 기능을 제공한다.
 // 마우스 드래그로 카메라를 중심 객체 중변으로 회전
 // shift + 드래그 또는 오른쪽 클릭으로 카메라 편행 이동
 // Damping 부드러운 감속 효과
-const controls = new three_examples_jsm_Addons_js__WEBPACK_IMPORTED_MODULE_2__.OrbitControls(camera, renderer.domElement);
+const controls = new three_examples_jsm_Addons_js__WEBPACK_IMPORTED_MODULE_4__.OrbitControls(camera, renderer.domElement);
 
 //애니메이션 루프
 function animate(){
@@ -79101,6 +79259,7 @@ function animate(){
     //매프레임마다, 콜백 함수 호출 
     //화면 렌더 함수를 콜백 함수로 주어, 매프레임 끝나면 자동으로 다음 프레임을 호출되게 설정 
     requestAnimationFrame(animate);
+    controls.update();
     renderer.render(scene, camera);
 };
 
@@ -79111,9 +79270,7 @@ window.addEventListener('resize', () => {
     //투영 행렬(시야각, 동횡비 등) 갱신시 사용하는 메소드
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-})
-
-
+});
 })();
 
 /******/ })()

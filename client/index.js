@@ -16,7 +16,7 @@ const camera = new THREE.PerspectiveCamera(
     0.1, 
     1000
 );
-camera.position.set(15, 15, 600);
+camera.position.set(0, 500, 0);
 camera.lookAt(0, 0, 0);
 
 // 렌더러
@@ -45,23 +45,72 @@ const base = FloorMesh.create({
     option: { color: 0x444444, side:true }
 });
 
-const points = [
-    {x: 0, y: 0},
-    {x: 0, y: 20},
-    {x: 50, y: 20},
-    {x: 50, y: 0},
-];
-
-const position = {
-    x: 0,
-    y: 5,
-    z: 0
-};
-
-const room = ShapeMesh.create({points, position});
-
 scene.add(base);
-scene.add(room);
+
+
+
+const rooms = [
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 270},
+            {x: 150, y: 270},
+            {x: 150, y: 0},
+        ],
+        position: {
+            x: -80,
+            z: 5,
+            y: 100
+        }
+    },
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 30},
+            {x: 50, y: 30},
+            {x: 50, y: 0},
+        ],
+        position: {
+            x: -80,
+            z: 5,
+            y: -170
+        }
+    },
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 30},
+            {x: 35, y: 30},
+            {x: 35, y: 0},
+        ],
+        position: {
+            x: -30,
+            z: 5,
+            y: -170
+        }
+    },
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 30},
+            {x: 190, y: 30},
+            {x: 190, y: 0},
+        ],
+        position: {
+            x: 5,
+            z: 5,
+            y: -170
+        }
+    },
+
+]
+
+rooms.forEach(room => {
+    const mesh = ShapeMesh.create({points: room["points"], position: room["position"]});
+    scene.add(mesh);
+})
+
+
 
 
 
