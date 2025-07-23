@@ -10,7 +10,7 @@ export default class ShapeMesh {
         }
     }) => {
         const _points = points;
-        const { x, z, y } = position;
+        const { x, y, z } = position;
         const { color, side } = option;
 
         if(!_points || _points.length < 3) return;
@@ -29,7 +29,7 @@ export default class ShapeMesh {
         });
         const mesh = new THREE.Mesh(geometry, material);
         mesh.rotation.x = -Math.PI / 2;
-        mesh.position.set(x, z, y);
+        mesh.position.set(x, y, z);
         
         return mesh;
     }
