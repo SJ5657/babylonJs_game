@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default class FloorMesh {
+export default class PlaneMesh {
     static create = ({
         position = { x: 0, y: 0, z: 0 }, 
         size={ width: 5, height: 5 }, 

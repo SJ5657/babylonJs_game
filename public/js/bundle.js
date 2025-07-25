@@ -10,12 +10,12 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ FloorMesh)
+/* harmony export */   "default": () => (/* binding */ PlaneMesh)
 /* harmony export */ });
 /* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
 
 
-class FloorMesh {
+class PlaneMesh {
     static create = ({
         position = { x: 0, y: 0, z: 0 }, 
         size={ width: 5, height: 5 }, 
@@ -61,7 +61,7 @@ class ShapeMesh {
         }
     }) => {
         const _points = points;
-        const { x, z, y } = position;
+        const { x, y, z } = position;
         const { color, side } = option;
 
         if(!_points || _points.length < 3) return;
@@ -80,7 +80,7 @@ class ShapeMesh {
         });
         const mesh = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(geometry, material);
         mesh.rotation.x = -Math.PI / 2;
-        mesh.position.set(x, z, y);
+        mesh.position.set(x, y, z);
         
         return mesh;
     }
@@ -79136,7 +79136,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-console.log(_mesh_plane__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 // 씬 생성
 const scene = new three__WEBPACK_IMPORTED_MODULE_2__.Scene();
@@ -79182,7 +79181,187 @@ scene.add(base);
 
 
 
+// const rooms = [
+//     //중앙 큰 영역(메인 사무실)
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 270},
+//             {x: 150, y: 270},
+//             {x: 150, y: 0},
+//         ],
+//         size: {
+//             width: 150,
+//             height: 270
+//         },
+//         position: {
+//             x: -80,
+//             y: 5,
+//             z: 100
+//         }
+//     },
+//     //우측 영역(사장실, 회의실)
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 30},
+//             {x: 50, y: 30},
+//             {x: 50, y: 0},
+//         ],
+//         size: {
+//             width: 50,
+//             height: 30
+//         },
+//         position: {
+//             x: -80,
+//             y: 5,
+//             z: -170
+//         }
+//     },
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 30},
+//             {x: 35, y: 30},
+//             {x: 35, y: 0},
+//         ],
+//         size: {
+//             width: 35,
+//             height: 30
+//         },
+//         position: {
+//             x: -30,
+//             y: 5,
+//             z: -170,
+//         }
+//     },
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 30},
+//             {x: 190, y: 30},
+//             {x: 190, y: 0},
+//         ],
+//         size: {
+//             width: 190,
+//             height: 30
+//         },
+//         position: {
+//             x: 5,
+//             y: 5,
+//             z: -170,
+//         }
+//     },
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 20},
+//             {x: 70, y: 20},
+//             {x: 70, y: 0},
+//         ],
+//         size: {
+//             width: 70,
+//             height: 20
+//         },
+//         position: {
+//             x: 70,
+//             y: 5,
+//             z: -150
+//         }
+//     },
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 20},
+//             {x: 70, y: 20},
+//             {x: 70, y: 0},
+//         ],
+//         size: {
+//             width: 70,
+//             height: 20
+//         },
+//         position: {
+//             x: 70,
+//             y: 5,
+//             z: -130
+//         }
+//     },
+
+//     //좌측 영역(연구소)
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 90},
+//             {x: 150, y: 90},
+//             {x: 150, y: 0},
+//         ],
+//         size: {
+//             width: 150,
+//             height: 90
+//         },
+//         position: {
+//             x: -80,
+//             y: 5,
+//             z: 190
+//         }
+//     },
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 40},
+//             {x: 70, y: 40},
+//             {x: 70, y: 0},
+//         ],
+//         size: {
+//             width: 70,
+//             height: 40
+//         },
+//         position: {
+//             x: 70,
+//             y: 5,
+//             z: 140
+//         }
+//     },
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 90},
+//             {x: 70, y: 90},
+//             {x: 70, y: 0},
+//         ],
+//         size: {
+//             width: 70,
+//             height: 90
+//         },
+//         position: {
+//             x: 70,
+//             y: 5,
+//             z: 230
+//         }
+//     },
+//     {
+//         points: [
+//             {x: 0, y: 0},
+//             {x: 0, y: 40},
+//             {x: 150, y: 40},
+//             {x: 150, y: 0},
+//         ],
+//         size: {
+//             width: 150,
+//             height: 40
+//         },
+//         position: {
+//             x: -80,
+//             y: 5,
+//             z: 230
+//         }
+//     },
+    
+
+// ]
+
 const rooms = [
+    //중앙 큰 영역(메인 사무실)
     {
         points: [
             {x: 0, y: 0},
@@ -79190,12 +79369,18 @@ const rooms = [
             {x: 150, y: 270},
             {x: 150, y: 0},
         ],
+        size: {
+            width: 150,
+            height: 270
+        },
         position: {
-            x: -80,
-            z: 5,
-            y: 100
+            // x: -80,
+            x: -5,
+            y: 5,
+            z: -35
         }
     },
+    //우측 영역(사장실, 회의실)
     {
         points: [
             {x: 0, y: 0},
@@ -79203,10 +79388,14 @@ const rooms = [
             {x: 50, y: 30},
             {x: 50, y: 0},
         ],
+        size: {
+            width: 50,
+            height: 30
+        },
         position: {
-            x: -80,
-            z: 5,
-            y: -170
+            x: -55,
+            y: 5,
+            z: -185
         }
     },
     {
@@ -79216,10 +79405,14 @@ const rooms = [
             {x: 35, y: 30},
             {x: 35, y: 0},
         ],
+        size: {
+            width: 35,
+            height: 30
+        },
         position: {
-            x: -30,
-            z: 5,
-            y: -170
+            x: -17.5,
+            y: 5,
+            z: -185
         }
     },
     {
@@ -79229,17 +79422,133 @@ const rooms = [
             {x: 190, y: 30},
             {x: 190, y: 0},
         ],
+        size: {
+            width: 190,
+            height: 30
+        },
         position: {
-            x: 5,
-            z: 5,
-            y: -170
+            x: 95,
+            y: 5,
+            z: -185,
         }
     },
+    {
+        points: [
+            {x: 0, y: 0},
+            {x: 0, y: 20},
+            {x: 70, y: 20},
+            {x: 70, y: 0},
+        ],
+        size: {
+            width: 70,
+            height: 20
+        },
+        position: {
+            x: 70,
+            y: 5,
+            z: -150
+        }
+    },
+    // {
+    //     points: [
+    //         {x: 0, y: 0},
+    //         {x: 0, y: 20},
+    //         {x: 70, y: 20},
+    //         {x: 70, y: 0},
+    //     ],
+    //     size: {
+    //         width: 70,
+    //         height: 20
+    //     },
+    //     position: {
+    //         x: 105,
+    //         y: 5,
+    //         z: -110
+    //     }
+    // },
+
+    // //좌측 영역(연구소)
+    // {
+    //     points: [
+    //         {x: 0, y: 0},
+    //         {x: 0, y: 90},
+    //         {x: 150, y: 90},
+    //         {x: 150, y: 0},
+    //     ],
+    //     size: {
+    //         width: 150,
+    //         height: 90
+    //     },
+    //     position: {
+    //         x: -5,
+    //         y: 5,
+    //         z: 100
+    //     }
+    // },
+    // {
+    //     points: [
+    //         {x: 0, y: 0},
+    //         {x: 0, y: 40},
+    //         {x: 70, y: 40},
+    //         {x: 70, y: 0},
+    //     ],
+    //     size: {
+    //         width: 70,
+    //         height: 40
+    //     },
+    //     position: {
+    //         x: 35,
+    //         y: 5,
+    //         z: 120
+    //     }
+    // },
+    // {
+    //     points: [
+    //         {x: 0, y: 0},
+    //         {x: 0, y: 90},
+    //         {x: 70, y: 90},
+    //         {x: 70, y: 0},
+    //     ],
+    //     size: {
+    //         width: 70,
+    //         height: 90
+    //     },
+    //     position: {
+    //         x: 35,
+    //         y: 5,
+    //         z: 185
+    //     }
+    // },
+    // {
+    //     points: [
+    //         {x: 0, y: 0},
+    //         {x: 0, y: 40},
+    //         {x: 150, y: 40},
+    //         {x: 150, y: 0},
+    //     ],
+    //     size: {
+    //         width: 150,
+    //         height: 40
+    //     },
+    //     position: {
+    //         x: -40,
+    //         y: 5,
+    //         z: 210
+    //     }
+    // },
+    
 
 ]
 
 rooms.forEach(room => {
-    const mesh = _mesh_shape__WEBPACK_IMPORTED_MODULE_1__["default"].create({points: room["points"], position: room["position"]});
+    const mesh = _mesh_plane__WEBPACK_IMPORTED_MODULE_0__["default"].create({
+        size: room["size"], 
+        position: room["position"], 
+        option: {
+            color: 0x888888,
+            side: true
+        }
+    });
     scene.add(mesh);
 })
 
