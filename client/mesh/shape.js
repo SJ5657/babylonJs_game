@@ -5,14 +5,14 @@ export default class ShapeMesh {
         points = [],
         position = { x:0, y:0, z:0 }, 
         option = {
-            horizontality: true,
+            rotationX: true,
             color: 0x888888,
             side: true
         }
     }) => {
         const _points = points;
         const { x, y, z } = position;
-        const { horizontality, color, side } = option;
+        const { rotationX, color, side } = option;
 
         if(!_points || _points.length < 3) return;
 
@@ -29,7 +29,7 @@ export default class ShapeMesh {
             side : side ? THREE.DoubleSide : THREE.FrontSide
         });
         const mesh = new THREE.Mesh(geometry, material);
-        if(horizontality) mesh.rotation.x = -Math.PI / 2;
+        if(rotationX) mesh.rotation.x = -Math.PI / 2;
         mesh.position.set(x, y, z);
         
         return mesh;

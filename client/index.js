@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import PlaneMesh from './mesh/plane';
 import LineSegment from './segment/line';
+import BoxMesh from './mesh/box';
 
 // 씬 생성
 const scene = new THREE.Scene();
@@ -40,48 +41,84 @@ scene.add(directionalLight);
 const base = PlaneMesh.create({
     position: { x: 0, y: 0, z: 0 },
     size: { width: 500, height: 500 },
-    option: { color: 0x444444, side:true }
+    option: { 
+        rotationX: true,
+        color: 0x444444,
+        side:true
+    }
 });
 
 scene.add(base);
 
+const floorHeight = 5;
+const wallHeight = 70;
+const wallPostionY = wallHeight / 2 + floorHeight;
+
 const rooms = [
     //중앙 큰 영역(메인 사무실)
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 270},
-            {x: 150, y: 270},
-            {x: 150, y: 0},
-        ],
         size: {
             width: 150,
             height: 270
         },
         position: {
-            // x: -80,
             x: -5,
-            y: 5,
+            y: floorHeight,
             z: -35
-        }
+        },
+        // walls: [
+        //     {
+        //         size:{
+        //             width: 10,
+        //             height: wallHeight,
+        //             depth: 270
+        //         },
+        //         position: {
+        //             x: -75,
+        //             y: wallPostionY,
+        //             z: -35
+        //         }
+        //     }
+        // ]
     },
     //우측 영역(사장실, 회의실)
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 30},
-            {x: 50, y: 30},
-            {x: 50, y: 0},
-        ],
         size: {
-            width: 50,
+            width: 40,
             height: 30
         },
         position: {
             x: -55,
-            y: 5,
+            y: floorHeight,
             z: -185
-        }
+        },
+        walls: [
+            {
+                size:{
+                    width: 10,
+                    height: wallHeight,
+                    depth: 30
+                },
+                position: {
+                    x: -75,
+                    y: wallPostionY,
+                    z: -185
+                }
+            },
+            {
+                size:{
+                    width: 10,
+                    height: wallHeight,
+                    depth: 40
+                },
+                position: {
+                    x: -50,
+                    y: wallPostionY,
+                    z: -185
+                },
+                // rotation: true
+            }
+        ]
     },
     {
         size: {
@@ -90,8 +127,11 @@ const rooms = [
         },
         position: {
             x: -17.5,
-            y: 5,
+            y: floorHeight,
             z: -185
+        },
+        wall: {
+            
         }
     },
     {
@@ -101,7 +141,7 @@ const rooms = [
         },
         position: {
             x: 95,
-            y: 5,
+            y: floorHeight,
             z: -185,
         }
     },
@@ -112,7 +152,7 @@ const rooms = [
         },
         position: {
             x: 105,
-            y: 5,
+            y: floorHeight,
             z: -160
         }
     },
@@ -123,7 +163,7 @@ const rooms = [
         },
         position: {
             x: 105,
-            y: 5,
+            y: floorHeight,
             z: -140
         }
     },
@@ -136,7 +176,7 @@ const rooms = [
         },
         position: {
             x: -5,
-            y: 5,
+            y: floorHeight,
             z: 145
         }
     },
@@ -147,7 +187,7 @@ const rooms = [
         },
         position: {
             x: 105,
-            y: 5,
+            y: floorHeight,
             z: 120
         }
     },
@@ -158,7 +198,7 @@ const rooms = [
         },
         position: {
             x: 105,
-            y: 5,
+            y: floorHeight,
             z: 185
         }
     },
@@ -169,7 +209,7 @@ const rooms = [
         },
         position: {
             x: -5,
-            y: 5,
+            y: floorHeight,
             z: 210
         }
     },
@@ -178,17 +218,37 @@ const rooms = [
 ]
 
 rooms.forEach(room => {
-    const mesh = PlaneMesh.create({
+    const floor = PlaneMesh.create({
         size: room["size"], 
         position: room["position"], 
         option: {
+            rotationX: true,
             color: 0x888888,
             side: true
         }
     });
-    const lineSegment = LineSegment.create({geometry: mesh.geometry, position: room["position"]});
-    scene.add(lineSegment);
-    scene.add(mesh, lineSegment);
+    const boundaryLine = LineSegment.create({
+        rotationX: true,
+        geometry: floor.geometry,
+        position: room["position"]
+    });
+
+    scene.add(floor, boundaryLine);
+
+    if(room['walls'] && room['walls'].length > 0){
+        room['walls'].forEach(( wall ) => {
+            const boxMesh = BoxMesh.create({
+                size: wall["size"],
+                position: wall["position"],
+                option: {
+                    rotationX: false,
+                    rotationY: wall["rotation"] === true ? true : false,
+                    color: 0xBBBBBB 
+                }
+            });
+            scene.add(boxMesh);
+        }) 
+    }  
 })
 
 
