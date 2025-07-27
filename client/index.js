@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import PlaneMesh from './mesh/plane';
-import ShapeMesh from './mesh/shape';
-import { color } from 'three/tsl';
+import LineSegment from './segment/line';
 
 // 씬 생성
 const scene = new THREE.Scene();
@@ -45,187 +44,6 @@ const base = PlaneMesh.create({
 });
 
 scene.add(base);
-
-
-
-// const rooms = [
-//     //중앙 큰 영역(메인 사무실)
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 270},
-//             {x: 150, y: 270},
-//             {x: 150, y: 0},
-//         ],
-//         size: {
-//             width: 150,
-//             height: 270
-//         },
-//         position: {
-//             x: -80,
-//             y: 5,
-//             z: 100
-//         }
-//     },
-//     //우측 영역(사장실, 회의실)
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 30},
-//             {x: 50, y: 30},
-//             {x: 50, y: 0},
-//         ],
-//         size: {
-//             width: 50,
-//             height: 30
-//         },
-//         position: {
-//             x: -80,
-//             y: 5,
-//             z: -170
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 30},
-//             {x: 35, y: 30},
-//             {x: 35, y: 0},
-//         ],
-//         size: {
-//             width: 35,
-//             height: 30
-//         },
-//         position: {
-//             x: -30,
-//             y: 5,
-//             z: -170,
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 30},
-//             {x: 190, y: 30},
-//             {x: 190, y: 0},
-//         ],
-//         size: {
-//             width: 190,
-//             height: 30
-//         },
-//         position: {
-//             x: 5,
-//             y: 5,
-//             z: -170,
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 20},
-//             {x: 70, y: 20},
-//             {x: 70, y: 0},
-//         ],
-//         size: {
-//             width: 70,
-//             height: 20
-//         },
-//         position: {
-//             x: 70,
-//             y: 5,
-//             z: -150
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 20},
-//             {x: 70, y: 20},
-//             {x: 70, y: 0},
-//         ],
-//         size: {
-//             width: 70,
-//             height: 20
-//         },
-//         position: {
-//             x: 70,
-//             y: 5,
-//             z: -130
-//         }
-//     },
-
-//     //좌측 영역(연구소)
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 90},
-//             {x: 150, y: 90},
-//             {x: 150, y: 0},
-//         ],
-//         size: {
-//             width: 150,
-//             height: 90
-//         },
-//         position: {
-//             x: -80,
-//             y: 5,
-//             z: 190
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 40},
-//             {x: 70, y: 40},
-//             {x: 70, y: 0},
-//         ],
-//         size: {
-//             width: 70,
-//             height: 40
-//         },
-//         position: {
-//             x: 70,
-//             y: 5,
-//             z: 140
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 90},
-//             {x: 70, y: 90},
-//             {x: 70, y: 0},
-//         ],
-//         size: {
-//             width: 70,
-//             height: 90
-//         },
-//         position: {
-//             x: 70,
-//             y: 5,
-//             z: 230
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 40},
-//             {x: 150, y: 40},
-//             {x: 150, y: 0},
-//         ],
-//         size: {
-//             width: 150,
-//             height: 40
-//         },
-//         position: {
-//             x: -80,
-//             y: 5,
-//             z: 230
-//         }
-//     },
-    
-
-// ]
 
 const rooms = [
     //중앙 큰 영역(메인 사무실)
@@ -416,7 +234,9 @@ rooms.forEach(room => {
             side: true
         }
     });
-    scene.add(mesh);
+    const lineSegment = LineSegment.create({geometry: mesh.geometry, position: room["position"]});
+    scene.add(lineSegment);
+    scene.add(mesh, lineSegment);
 })
 
 
