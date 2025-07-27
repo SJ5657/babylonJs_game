@@ -4,7 +4,7 @@ export default class PlaneMesh {
     static create = ({
         position = { x: 0, y: 0, z: 0 }, 
         size={ width: 5, height: 5 }, 
-        option = { color: 0x444444, side: true}
+        option = {horizontality:true, color: 0x444444, side: true}
     }) => {
         const { x, y, z } = position;
         const { width, height } = size;
@@ -15,7 +15,7 @@ export default class PlaneMesh {
             side
         });
         const mesh = new THREE.Mesh(geometry, material);
-        mesh.rotation.x = -Math.PI / 2;
+        if(horizontality) mesh.rotation.x = -Math.PI / 2;
         mesh.position.set(x, y, z);
         return mesh;
     };

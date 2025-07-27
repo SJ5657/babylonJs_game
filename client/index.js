@@ -84,12 +84,6 @@ const rooms = [
         }
     },
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 30},
-            {x: 35, y: 30},
-            {x: 35, y: 0},
-        ],
         size: {
             width: 35,
             height: 30
@@ -101,12 +95,6 @@ const rooms = [
         }
     },
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 30},
-            {x: 190, y: 30},
-            {x: 190, y: 0},
-        ],
         size: {
             width: 190,
             height: 30
@@ -118,12 +106,6 @@ const rooms = [
         }
     },
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 20},
-            {x: 70, y: 20},
-            {x: 70, y: 0},
-        ],
         size: {
             width: 70,
             height: 20
@@ -135,12 +117,6 @@ const rooms = [
         }
     },
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 20},
-            {x: 70, y: 20},
-            {x: 70, y: 0},
-        ],
         size: {
             width: 70,
             height: 20
@@ -154,12 +130,6 @@ const rooms = [
 
     //좌측 영역(연구소)
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 90},
-            {x: 150, y: 90},
-            {x: 150, y: 0},
-        ],
         size: {
             width: 150,
             height: 90
@@ -171,12 +141,6 @@ const rooms = [
         }
     },
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 40},
-            {x: 70, y: 40},
-            {x: 70, y: 0},
-        ],
         size: {
             width: 70,
             height: 40
@@ -188,12 +152,6 @@ const rooms = [
         }
     },
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 90},
-            {x: 70, y: 90},
-            {x: 70, y: 0},
-        ],
         size: {
             width: 70,
             height: 90
@@ -205,12 +163,6 @@ const rooms = [
         }
     },
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 40},
-            {x: 150, y: 40},
-            {x: 150, y: 0},
-        ],
         size: {
             width: 150,
             height: 40
