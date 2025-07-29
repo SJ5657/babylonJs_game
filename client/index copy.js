@@ -40,8 +40,7 @@ scene.add(directionalLight);
 //바닥(plane) 생성
 const base = PlaneMesh.create({
     position: { x: 0, y: 0, z: 0 },
-    type: type["PLANE"],
-size:{ width: 500, height: 500 },
+    size: { width: 500, height: 500 },
     option: { 
         rotationX: true,
         color: 0x444444,
@@ -54,60 +53,124 @@ scene.add(base);
 const floorHeight = 5;
 const wallHeight = 70;
 const wallPostionY = wallHeight / 2 + floorHeight;
-const type = {
-    PLANE: 'plane',
-    SHAPE: 'shape'
-}
-const rooms = [
-    
 
-    //메인 영역(사무실)
+const rooms = [
+    //중앙 큰 영역(메인 사무실)
     {
-        type: type["SHAPE"],
-        points:[
-            {
-                x: 0,
-                y: 0
-            },
-            {
-                x: 0,
-                y: 0
-            },
-            {
-                x: 0,
-                y: 0
-            },
-            {
-                x: 0,
-                y: 0
-            },
-            {
-                x: 0,
-                y: 0
-            },
-            {
-                x: 0,
-                y: 0
-            },
-            {
-                x: 0,
-                y: 0
-            },
-            {
-                x: 0,
-                y: 0
-            },
-        ],
+        size: {
+            width: 150,
+            height: 270
+        },
         position: {
-            x: 0,
+            x: -5,
             y: floorHeight,
-            z: 0
+            z: -35
+        },
+        // walls: [
+        //     {
+        //         size:{
+        //             width: 10,
+        //             height: wallHeight,
+        //             depth: 270
+        //         },
+        //         position: {
+        //             x: -75,
+        //             y: wallPostionY,
+        //             z: -35
+        //         }
+        //     }
+        // ]
+    },
+    //우측 영역(사장실, 회의실)
+    {
+        size: {
+            width: 40,
+            height: 30
+        },
+        position: {
+            x: -55,
+            y: floorHeight,
+            z: -185
+        },
+        walls: [
+            {
+                size:{
+                    width: 10,
+                    height: wallHeight,
+                    depth: 30
+                },
+                position: {
+                    x: -75,
+                    y: wallPostionY,
+                    z: -185
+                }
+            },
+            {
+                size:{
+                    width: 10,
+                    height: wallHeight,
+                    depth: 40
+                },
+                position: {
+                    x: -50,
+                    y: wallPostionY,
+                    z: -185
+                },
+                // rotation: true
+            }
+        ]
+    },
+    {
+        size: {
+            width: 35,
+            height: 30
+        },
+        position: {
+            x: -17.5,
+            y: floorHeight,
+            z: -185
+        },
+        wall: {
+            
         }
     },
+    {
+        size: {
+            width: 190,
+            height: 30
+        },
+        position: {
+            x: 95,
+            y: floorHeight,
+            z: -185,
+        }
+    },
+    {
+        size: {
+            width: 70,
+            height: 20
+        },
+        position: {
+            x: 105,
+            y: floorHeight,
+            z: -160
+        }
+    },
+    {
+        size: {
+            width: 70,
+            height: 20
+        },
+        position: {
+            x: 105,
+            y: floorHeight,
+            z: -140
+        }
+    },
+
     //좌측 영역(연구소)
     {
-        type: type["PLANE"],
-        size:{
+        size: {
             width: 150,
             height: 90
         },
@@ -117,10 +180,8 @@ const rooms = [
             z: 145
         }
     },
-    //좌측 영역(서버실1)
     {
-        type: type["PLANE"],
-        size:{
+        size: {
             width: 70,
             height: 40
         },
@@ -130,10 +191,8 @@ const rooms = [
             z: 120
         }
     },
-    //좌측 영역(회의실)
     {
-        type: type["PLANE"],
-        size:{
+        size: {
             width: 70,
             height: 90
         },
@@ -143,10 +202,8 @@ const rooms = [
             z: 185
         }
     },
-    //좌측 영역(서버실2)
     {
-        type: type["PLANE"],
-        size:{
+        size: {
             width: 150,
             height: 40
         },
@@ -155,7 +212,9 @@ const rooms = [
             y: floorHeight,
             z: 210
         }
-    }
+    },
+    
+
 ]
 
 rooms.forEach(room => {

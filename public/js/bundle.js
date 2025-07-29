@@ -2,6 +2,54 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./client/mesh/box.js":
+/*!****************************!*\
+  !*** ./client/mesh/box.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BoxMesh)
+/* harmony export */ });
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
+
+
+class BoxMesh {
+    static create = ({
+        size = {
+            width: 10,
+            height: 10,
+            depth: 10 
+        }, 
+        position = {
+            x: 0, 
+            y: 0, 
+            z: 0
+        }, 
+        option = {
+            rotationX: false,
+            rotationY: false,
+            color: 0x888888            
+        }
+    }) => {
+        const { width, height, depth } = size;
+        const { x, y, z } = position;
+        const { rotationX, rotationY ,color } = option; 
+        const geometry = new three__WEBPACK_IMPORTED_MODULE_0__.BoxGeometry(width, height, depth);
+        const material = new three__WEBPACK_IMPORTED_MODULE_0__.MeshStandardMaterial({ color });
+        const mesh = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(geometry, material);
+        if(rotationX) mesh.rotation.x = -Math.PI / 2;
+        if(rotationY) mesh.rotation.y = -Math.PI / 2;
+        mesh.position.set(x, y, z);
+        return mesh;
+
+
+    } 
+}
+
+/***/ }),
+
 /***/ "./client/mesh/plane.js":
 /*!******************************!*\
   !*** ./client/mesh/plane.js ***!
@@ -19,18 +67,18 @@ class PlaneMesh {
     static create = ({
         position = { x: 0, y: 0, z: 0 }, 
         size={ width: 5, height: 5 }, 
-        option = { color: 0x444444, side: true}
+        option = {rotationX: true, color: 0x444444, side: true}
     }) => {
         const { x, y, z } = position;
         const { width, height } = size;
-        const { color, side } = option;
+        const { rotationX, color, side } = option;
         const geometry = new three__WEBPACK_IMPORTED_MODULE_0__.PlaneGeometry(width, height);
         const material = new three__WEBPACK_IMPORTED_MODULE_0__.MeshStandardMaterial({
             color,
             side
         });
         const mesh = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(geometry, material);
-        mesh.rotation.x = -Math.PI / 2;
+        if(rotationX) mesh.rotation.x = -Math.PI / 2;
         mesh.position.set(x, y, z);
         return mesh;
     };
@@ -38,51 +86,32 @@ class PlaneMesh {
 
 /***/ }),
 
-/***/ "./client/mesh/shape.js":
-/*!******************************!*\
-  !*** ./client/mesh/shape.js ***!
-  \******************************/
+/***/ "./client/segment/line.js":
+/*!********************************!*\
+  !*** ./client/segment/line.js ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ShapeMesh)
+/* harmony export */   "default": () => (/* binding */ LineSegment)
 /* harmony export */ });
 /* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
 
 
-class ShapeMesh {
+class LineSegment {
     static create = ({
-        points = [],
-        position = { x:0, y:0, z:0 }, 
-        option = {
-            color: 0x888888,
-            side: true
-        }
+        geometry,
+        position = {x: 0, y: 0, z:0},
+        option= { color: 0x000 }
     }) => {
-        const _points = points;
         const { x, y, z } = position;
-        const { color, side } = option;
-
-        if(!_points || _points.length < 3) return;
-
-        const shape = new three__WEBPACK_IMPORTED_MODULE_0__.Shape();
-        shape.moveTo(_points[0]["x"], _points[0]["y"]);
-
-        for(let i = 1 ; i < _points.length ; i++){
-            shape.lineTo(_points[i]["x"], _points[i]["y"]);
-        };
-
-        const geometry = new three__WEBPACK_IMPORTED_MODULE_0__.ShapeGeometry(shape);
-        const material = new three__WEBPACK_IMPORTED_MODULE_0__.MeshStandardMaterial({
-            color,
-            side : side ? three__WEBPACK_IMPORTED_MODULE_0__.DoubleSide : three__WEBPACK_IMPORTED_MODULE_0__.FrontSide
-        });
-        const mesh = new three__WEBPACK_IMPORTED_MODULE_0__.Mesh(geometry, material);
-        mesh.rotation.x = -Math.PI / 2;
-        mesh.position.set(x, y, z);
-        
-        return mesh;
+        const edgeGeometry = new three__WEBPACK_IMPORTED_MODULE_0__.EdgesGeometry(geometry);
+        const edgeMaterial = new three__WEBPACK_IMPORTED_MODULE_0__.LineBasicMaterial({color: option['color']});  
+        const edges = new three__WEBPACK_IMPORTED_MODULE_0__.LineSegments(edgeGeometry, edgeMaterial);
+        edges.rotation.x = -Math.PI / 2;
+        edges.position.set(x, y, z);
+        return edges;
     }
 }
 
@@ -79126,11 +79155,12 @@ var __webpack_exports__ = {};
   !*** ./client/index.js ***!
   \*************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_Addons_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! three/examples/jsm/Addons.js */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.core.js");
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
+/* harmony import */ var three_examples_jsm_Addons_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! three/examples/jsm/Addons.js */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
 /* harmony import */ var _mesh_plane__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mesh/plane */ "./client/mesh/plane.js");
-/* harmony import */ var _mesh_shape__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mesh/shape */ "./client/mesh/shape.js");
+/* harmony import */ var _segment_line__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./segment/line */ "./client/segment/line.js");
+/* harmony import */ var _mesh_box__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mesh/box */ "./client/mesh/box.js");
 
 
 
@@ -79138,11 +79168,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // 씬 생성
-const scene = new three__WEBPACK_IMPORTED_MODULE_2__.Scene();
-scene.background = new three__WEBPACK_IMPORTED_MODULE_2__.Color(0xcccccc);
+const scene = new three__WEBPACK_IMPORTED_MODULE_3__.Scene();
+scene.background = new three__WEBPACK_IMPORTED_MODULE_3__.Color(0xcccccc);
 
 // 카메라
-const camera = new three__WEBPACK_IMPORTED_MODULE_2__.PerspectiveCamera(
+const camera = new three__WEBPACK_IMPORTED_MODULE_3__.PerspectiveCamera(
     60, 
     window.innerWidth / window.innerHeight, 
     0.1, 
@@ -79152,7 +79182,7 @@ camera.position.set(0, 500, 0);
 camera.lookAt(0, 0, 0);
 
 // 렌더러
-const renderer = new three__WEBPACK_IMPORTED_MODULE_3__.WebGLRenderer({ antialias: true });
+const renderer = new three__WEBPACK_IMPORTED_MODULE_4__.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 const viewer = document.querySelector('#viewer');
 if(viewer){
@@ -79163,393 +79193,166 @@ if(viewer){
 
 
 //조명
-const ambientLight = new three__WEBPACK_IMPORTED_MODULE_2__.AmbientLight(0xffffff, 0.5);
+const ambientLight = new three__WEBPACK_IMPORTED_MODULE_3__.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
-const directionalLight = new three__WEBPACK_IMPORTED_MODULE_2__.DirectionalLight(0xffffff, 1);
+const directionalLight = new three__WEBPACK_IMPORTED_MODULE_3__.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(10, 10, 10);
 scene.add(directionalLight);
 
 //바닥(plane) 생성
 const base = _mesh_plane__WEBPACK_IMPORTED_MODULE_0__["default"].create({
     position: { x: 0, y: 0, z: 0 },
-    size: { width: 500, height: 500 },
-    option: { color: 0x444444, side:true }
+    type: type["PLANE"],
+size:{ width: 500, height: 500 },
+    option: { 
+        rotationX: true,
+        color: 0x444444,
+        side:true
+    }
 });
 
 scene.add(base);
 
-
-
-// const rooms = [
-//     //중앙 큰 영역(메인 사무실)
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 270},
-//             {x: 150, y: 270},
-//             {x: 150, y: 0},
-//         ],
-//         size: {
-//             width: 150,
-//             height: 270
-//         },
-//         position: {
-//             x: -80,
-//             y: 5,
-//             z: 100
-//         }
-//     },
-//     //우측 영역(사장실, 회의실)
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 30},
-//             {x: 50, y: 30},
-//             {x: 50, y: 0},
-//         ],
-//         size: {
-//             width: 50,
-//             height: 30
-//         },
-//         position: {
-//             x: -80,
-//             y: 5,
-//             z: -170
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 30},
-//             {x: 35, y: 30},
-//             {x: 35, y: 0},
-//         ],
-//         size: {
-//             width: 35,
-//             height: 30
-//         },
-//         position: {
-//             x: -30,
-//             y: 5,
-//             z: -170,
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 30},
-//             {x: 190, y: 30},
-//             {x: 190, y: 0},
-//         ],
-//         size: {
-//             width: 190,
-//             height: 30
-//         },
-//         position: {
-//             x: 5,
-//             y: 5,
-//             z: -170,
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 20},
-//             {x: 70, y: 20},
-//             {x: 70, y: 0},
-//         ],
-//         size: {
-//             width: 70,
-//             height: 20
-//         },
-//         position: {
-//             x: 70,
-//             y: 5,
-//             z: -150
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 20},
-//             {x: 70, y: 20},
-//             {x: 70, y: 0},
-//         ],
-//         size: {
-//             width: 70,
-//             height: 20
-//         },
-//         position: {
-//             x: 70,
-//             y: 5,
-//             z: -130
-//         }
-//     },
-
-//     //좌측 영역(연구소)
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 90},
-//             {x: 150, y: 90},
-//             {x: 150, y: 0},
-//         ],
-//         size: {
-//             width: 150,
-//             height: 90
-//         },
-//         position: {
-//             x: -80,
-//             y: 5,
-//             z: 190
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 40},
-//             {x: 70, y: 40},
-//             {x: 70, y: 0},
-//         ],
-//         size: {
-//             width: 70,
-//             height: 40
-//         },
-//         position: {
-//             x: 70,
-//             y: 5,
-//             z: 140
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 90},
-//             {x: 70, y: 90},
-//             {x: 70, y: 0},
-//         ],
-//         size: {
-//             width: 70,
-//             height: 90
-//         },
-//         position: {
-//             x: 70,
-//             y: 5,
-//             z: 230
-//         }
-//     },
-//     {
-//         points: [
-//             {x: 0, y: 0},
-//             {x: 0, y: 40},
-//             {x: 150, y: 40},
-//             {x: 150, y: 0},
-//         ],
-//         size: {
-//             width: 150,
-//             height: 40
-//         },
-//         position: {
-//             x: -80,
-//             y: 5,
-//             z: 230
-//         }
-//     },
+const floorHeight = 5;
+const wallHeight = 70;
+const wallPostionY = wallHeight / 2 + floorHeight;
+const type = {
+    PLANE: 'plane',
+    SHAPE: 'shape'
+}
+const rooms = [
     
 
-// ]
-
-const rooms = [
-    //중앙 큰 영역(메인 사무실)
+    //메인 영역(사무실)
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 270},
-            {x: 150, y: 270},
-            {x: 150, y: 0},
+        type: type["SHAPE"],
+        points:[
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 0
+            },
         ],
-        size: {
-            width: 150,
-            height: 270
-        },
         position: {
-            // x: -80,
-            x: -5,
-            y: 5,
-            z: -35
+            x: 0,
+            y: floorHeight,
+            z: 0
         }
     },
-    //우측 영역(사장실, 회의실)
-    {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 30},
-            {x: 50, y: 30},
-            {x: 50, y: 0},
-        ],
-        size: {
-            width: 50,
-            height: 30
-        },
-        position: {
-            x: -55,
-            y: 5,
-            z: -185
-        }
-    },
-    {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 30},
-            {x: 35, y: 30},
-            {x: 35, y: 0},
-        ],
-        size: {
-            width: 35,
-            height: 30
-        },
-        position: {
-            x: -17.5,
-            y: 5,
-            z: -185
-        }
-    },
-    {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 30},
-            {x: 190, y: 30},
-            {x: 190, y: 0},
-        ],
-        size: {
-            width: 190,
-            height: 30
-        },
-        position: {
-            x: 95,
-            y: 5,
-            z: -185,
-        }
-    },
-    {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 20},
-            {x: 70, y: 20},
-            {x: 70, y: 0},
-        ],
-        size: {
-            width: 70,
-            height: 20
-        },
-        position: {
-            x: 105,
-            y: 5,
-            z: -160
-        }
-    },
-    {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 20},
-            {x: 70, y: 20},
-            {x: 70, y: 0},
-        ],
-        size: {
-            width: 70,
-            height: 20
-        },
-        position: {
-            x: 105,
-            y: 5,
-            z: -140
-        }
-    },
-
     //좌측 영역(연구소)
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 90},
-            {x: 150, y: 90},
-            {x: 150, y: 0},
-        ],
-        size: {
+        type: type["PLANE"],
+        size:{
             width: 150,
             height: 90
         },
         position: {
             x: -5,
-            y: 5,
+            y: floorHeight,
             z: 145
         }
     },
+    //좌측 영역(서버실1)
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 40},
-            {x: 70, y: 40},
-            {x: 70, y: 0},
-        ],
-        size: {
+        type: type["PLANE"],
+        size:{
             width: 70,
             height: 40
         },
         position: {
             x: 105,
-            y: 5,
+            y: floorHeight,
             z: 120
         }
     },
+    //좌측 영역(회의실)
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 90},
-            {x: 70, y: 90},
-            {x: 70, y: 0},
-        ],
-        size: {
+        type: type["PLANE"],
+        size:{
             width: 70,
             height: 90
         },
         position: {
             x: 105,
-            y: 5,
+            y: floorHeight,
             z: 185
         }
     },
+    //좌측 영역(서버실2)
     {
-        points: [
-            {x: 0, y: 0},
-            {x: 0, y: 40},
-            {x: 150, y: 40},
-            {x: 150, y: 0},
-        ],
-        size: {
+        type: type["PLANE"],
+        size:{
             width: 150,
             height: 40
         },
         position: {
             x: -5,
-            y: 5,
+            y: floorHeight,
             z: 210
         }
-    },
-    
-
+    }
 ]
 
 rooms.forEach(room => {
-    const mesh = _mesh_plane__WEBPACK_IMPORTED_MODULE_0__["default"].create({
+    const floor = _mesh_plane__WEBPACK_IMPORTED_MODULE_0__["default"].create({
         size: room["size"], 
         position: room["position"], 
         option: {
+            rotationX: true,
             color: 0x888888,
             side: true
         }
     });
-    scene.add(mesh);
+    const boundaryLine = _segment_line__WEBPACK_IMPORTED_MODULE_1__["default"].create({
+        rotationX: true,
+        geometry: floor.geometry,
+        position: room["position"]
+    });
+
+    scene.add(floor, boundaryLine);
+
+    if(room['walls'] && room['walls'].length > 0){
+        room['walls'].forEach(( wall ) => {
+            const boxMesh = _mesh_box__WEBPACK_IMPORTED_MODULE_2__["default"].create({
+                size: wall["size"],
+                position: wall["position"],
+                option: {
+                    rotationX: false,
+                    rotationY: wall["rotation"] === true ? true : false,
+                    color: 0xBBBBBB 
+                }
+            });
+            scene.add(boxMesh);
+        }) 
+    }  
 })
 
 
@@ -79560,7 +79363,7 @@ rooms.forEach(room => {
 // 마우스 드래그로 카메라를 중심 객체 중변으로 회전
 // shift + 드래그 또는 오른쪽 클릭으로 카메라 편행 이동
 // Damping 부드러운 감속 효과
-const controls = new three_examples_jsm_Addons_js__WEBPACK_IMPORTED_MODULE_4__.OrbitControls(camera, renderer.domElement);
+const controls = new three_examples_jsm_Addons_js__WEBPACK_IMPORTED_MODULE_5__.OrbitControls(camera, renderer.domElement);
 
 //애니메이션 루프
 function animate(){
