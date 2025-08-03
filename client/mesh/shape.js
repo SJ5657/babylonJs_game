@@ -7,12 +7,13 @@ export default class ShapeMesh {
         option = {
             rotationX: true,
             color: 0x888888,
-            side: true
+            side: true,
+            center: false
         }
     }) => {
         const _points = points;
         const { x, y, z } = position;
-        const { rotationX, color, side } = option;
+        const { rotationX, color, side, center } = option;
 
         if(!_points || _points.length < 3) return;
 
@@ -28,6 +29,7 @@ export default class ShapeMesh {
             color,
             side : side ? THREE.DoubleSide : THREE.FrontSide
         });
+        if( center ) geometry.center();
         const mesh = new THREE.Mesh(geometry, material);
         if(rotationX) mesh.rotation.x = -Math.PI / 2;
         mesh.position.set(x, y, z);

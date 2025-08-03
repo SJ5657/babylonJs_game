@@ -12,7 +12,7 @@ export default class PlaneMesh {
         const geometry = new THREE.PlaneGeometry(width, height);
         const material = new THREE.MeshStandardMaterial({
             color,
-            side
+            side : side ? THREE.DoubleSide : THREE.FrontSide
         });
         const mesh = new THREE.Mesh(geometry, material);
         if(rotationX) mesh.rotation.x = -Math.PI / 2;

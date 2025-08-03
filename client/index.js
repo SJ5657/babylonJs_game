@@ -1,8 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import PlaneMesh from './mesh/plane';
+import ShapeMesh from './mesh/shape';
 import LineSegment from './segment/line';
 import BoxMesh from './mesh/box';
+
+const type = {
+    PLANE: 'plane',
+    SHAPE: 'shape'
+}
 
 // 씬 생성
 const scene = new THREE.Scene();
@@ -15,7 +21,7 @@ const camera = new THREE.PerspectiveCamera(
     0.1, 
     1000
 );
-camera.position.set(0, 500, 0);
+camera.position.set(0, 600, 0);
 camera.lookAt(0, 0, 0);
 
 // 렌더러
@@ -41,7 +47,7 @@ scene.add(directionalLight);
 const base = PlaneMesh.create({
     position: { x: 0, y: 0, z: 0 },
     type: type["PLANE"],
-size:{ width: 500, height: 500 },
+size:{ width: 600, height: 600 },
     option: { 
         rotationX: true,
         color: 0x444444,
@@ -54,10 +60,7 @@ scene.add(base);
 const floorHeight = 5;
 const wallHeight = 70;
 const wallPostionY = wallHeight / 2 + floorHeight;
-const type = {
-    PLANE: 'plane',
-    SHAPE: 'shape'
-}
+
 const rooms = [
     
 
@@ -71,30 +74,30 @@ const rooms = [
             },
             {
                 x: 0,
-                y: 0
+                y: 280
             },
             {
-                x: 0,
-                y: 0
+                x: 45,
+                y: 280
             },
             {
-                x: 0,
-                y: 0
+                x: 45,
+                y: 300
             },
             {
-                x: 0,
-                y: 0
+                x: 165,
+                y: 300
             },
             {
-                x: 0,
-                y: 0
+                x: 165,
+                y: 265
             },
             {
-                x: 0,
-                y: 0
+                x: 150,
+                y: 265
             },
             {
-                x: 0,
+                x: 150,
                 y: 0
             },
         ],
@@ -112,9 +115,9 @@ const rooms = [
             height: 90
         },
         position: {
-            x: -5,
+            x: -7.5,
             y: floorHeight,
-            z: 145
+            z: 195
         }
     },
     //좌측 영역(서버실1)
@@ -125,12 +128,12 @@ const rooms = [
             height: 40
         },
         position: {
-            x: 105,
+            x: 102.5,
             y: floorHeight,
-            z: 120
+            z: 170
         }
     },
-    //좌측 영역(회의실)
+    // //좌측 영역(회의실)
     {
         type: type["PLANE"],
         size:{
@@ -138,36 +141,51 @@ const rooms = [
             height: 90
         },
         position: {
-            x: 105,
+            x: 102.5,
             y: floorHeight,
-            z: 185
+            z: 235
         }
     },
-    //좌측 영역(서버실2)
-    {
-        type: type["PLANE"],
-        size:{
-            width: 150,
-            height: 40
-        },
-        position: {
-            x: -5,
-            y: floorHeight,
-            z: 210
-        }
-    }
+    // //좌측 영역(서버실2)
+    // {
+    //     type: type["PLANE"],
+    //     size:{
+    //         width: 150,
+    //         height: 40
+    //     },
+    //     position: {
+    //         x: -5,
+    //         y: floorHeight,
+    //         z: 210
+    //     }
+    // }
 ]
 
 rooms.forEach(room => {
-    const floor = PlaneMesh.create({
-        size: room["size"], 
-        position: room["position"], 
-        option: {
-            rotationX: true,
-            color: 0x888888,
-            side: true
-        }
-    });
+    let floor;
+    if(room["type"] === type["PLANE"]){
+        floor = PlaneMesh.create({
+            size: room["size"], 
+            position: room["position"], 
+            option: {
+                rotationX: true,
+                color: 0x888888,
+                side: true
+            }
+        });
+    }else if(room["type"] === type["SHAPE"]){
+        floor = ShapeMesh.create({
+            points: room["points"],
+            position: room["position"],
+            option: {
+                rotationX: true,
+                color: 0x888888,
+                side: true,
+                center: true
+            }
+        })
+    }
+    
     const boundaryLine = LineSegment.create({
         rotationX: true,
         geometry: floor.geometry,
