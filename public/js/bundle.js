@@ -79268,7 +79268,7 @@ size:{ width: 600, height: 600 },
     option: { 
         rotationX: true,
         color: 0x444444,
-        side:true
+        side:false
     }
 });
 
@@ -79279,9 +79279,87 @@ const wallHeight = 70;
 const wallPostionY = wallHeight / 2 + floorHeight;
 
 const rooms = [
-    
-
-    //메인 영역(사무실)
+    //좌측영역
+    //사장실
+    {
+        type: type["PLANE"],
+        size:{
+            width: 55,
+            height: 60
+        },
+        position: {
+            x: -55,
+            y: floorHeight,
+            z: -155
+        }
+    },    
+    //공실1
+    {
+        type: type["PLANE"],
+        size:{
+            width: 30,
+            height: 35
+        },
+        position: {
+            x: -12.5,
+            y: floorHeight,
+            z: -167.5
+        }
+    },    
+    //공실2
+    {
+        type: type["PLANE"],
+        size:{
+            width: 30,
+            height: 35
+        },
+        position: {
+            x: 17.5,
+            y: floorHeight,
+            z: -167.5
+        }
+    },    
+    //회의실1
+    {
+        type: type["PLANE"],
+        size:{
+            width: 105,
+            height: 35
+        },
+        position: {
+            x: 85,
+            y: floorHeight,
+            z: -167.5
+        }
+    },    
+    //회의실2
+    {
+        type: type["PLANE"],
+        size:{
+            width: 55,
+            height: 35
+        },
+        position: {
+            x: 110,
+            y: floorHeight,
+            z: -132.5
+        }
+    },    
+    //회의실3
+    {
+        type: type["PLANE"],
+        size:{
+            width: 70,
+            height: 35
+        },
+        position: {
+            x: 102.5,
+            y: floorHeight,
+            z: -97.5
+        }
+    },   
+    //중간 영역
+    //메인 사무실
     {
         type: type["SHAPE"],
         points:[
@@ -79291,14 +79369,14 @@ const rooms = [
             },
             {
                 x: 0,
-                y: 280
+                y: 275
             },
             {
-                x: 45,
-                y: 280
+                x: 55,
+                y: 275
             },
             {
-                x: 45,
+                x: 55,
                 y: 300
             },
             {
@@ -79363,19 +79441,19 @@ const rooms = [
             z: 235
         }
     },
-    // //좌측 영역(서버실2)
-    // {
-    //     type: type["PLANE"],
-    //     size:{
-    //         width: 150,
-    //         height: 40
-    //     },
-    //     position: {
-    //         x: -5,
-    //         y: floorHeight,
-    //         z: 210
-    //     }
-    // }
+    //좌측 영역(서버실2)
+    {
+        type: type["PLANE"],
+        size:{
+            width: 150,
+            height: 40
+        },
+        position: {
+            x: -7.5,
+            y: floorHeight,
+            z: 260
+        }
+    }
 ]
 
 rooms.forEach(room => {
