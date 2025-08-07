@@ -79275,7 +79275,7 @@ size:{ width: 600, height: 600 },
 scene.add(base);
 
 const floorHeight = 5;
-const wallHeight = 70;
+const wallHeight = 50;
 const wallPostionY = wallHeight / 2 + floorHeight;
 
 const rooms = [
@@ -79291,7 +79291,41 @@ const rooms = [
             x: -55,
             y: floorHeight,
             z: -155
-        }
+        },
+        walls:[
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 55
+                },
+                position: {
+                    x: -80,
+                    y: wallPostionY,
+                    z: -155
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 50
+                },
+                position: {
+                    x: -52.5,
+                    y: wallPostionY,
+                    z: -180
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888
+                }
+            },
+        ]
     },    
     //공실1
     {
@@ -79304,7 +79338,25 @@ const rooms = [
             x: -12.5,
             y: floorHeight,
             z: -167.5
-        }
+        },
+        walls:[
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 35
+                },
+                position: {
+                    x: -12.5,
+                    y: wallPostionY,
+                    z: -180
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888
+                }
+            },
+        ]
     },    
     //공실2
     {
@@ -79317,7 +79369,25 @@ const rooms = [
             x: 17.5,
             y: floorHeight,
             z: -167.5
-        }
+        },
+        walls:[
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 35
+                },
+                position: {
+                    x: 17.5,
+                    y: wallPostionY,
+                    z: -180
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888
+                }
+            },
+        ]
     },    
     //회의실1
     {
@@ -79330,7 +79400,41 @@ const rooms = [
             x: 85,
             y: floorHeight,
             z: -167.5
-        }
+        },
+        walls:[
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 105
+                },
+                position: {
+                    x: 85,
+                    y: wallPostionY,
+                    z: -180
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888
+                }
+            },
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 30
+                },
+                position: {
+                    x: 135,
+                    y: wallPostionY,
+                    z: -165
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+        ]
     },    
     //회의실2
     {
@@ -79343,7 +79447,25 @@ const rooms = [
             x: 110,
             y: floorHeight,
             z: -132.5
-        }
+        },
+        walls:[
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 35
+                },
+                position: {
+                    x: 135,
+                    y: wallPostionY,
+                    z: -157.5
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+        ]
     },    
     //회의실3
     {
@@ -79496,7 +79618,7 @@ rooms.forEach(room => {
                 position: wall["position"],
                 option: {
                     rotationX: false,
-                    rotationY: wall["rotation"] === true ? true : false,
+                    rotationY: wall["option"]["rotation"] === true ? true : false,
                     color: 0xBBBBBB 
                 }
             });
