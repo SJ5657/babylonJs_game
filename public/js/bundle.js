@@ -79297,12 +79297,12 @@ const rooms = [
                 size: {
                     width: 5,
                     height: wallHeight,
-                    depth: 55
+                    depth: 57.5
                 },
                 position: {
                     x: -80,
                     y: wallPostionY,
-                    z: -155
+                    z: -153.75
                 },
                 option: {
                     rotation: false,
@@ -79458,7 +79458,7 @@ const rooms = [
                 position: {
                     x: 135,
                     y: wallPostionY,
-                    z: -157.5
+                    z: -132.5
                 },
                 option: {
                     rotation: false,
@@ -79478,7 +79478,41 @@ const rooms = [
             x: 102.5,
             y: floorHeight,
             z: -97.5
-        }
+        },
+        walls:[
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 35
+                },
+                position: {
+                    x: 135,
+                    y: wallPostionY,
+                    z: -97.5
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 65
+                },
+                position: {
+                    x: 100,
+                    y: wallPostionY,
+                    z: -82.5
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888
+                }
+            },
+        ]
     },   
     //중간 영역
     //메인 사무실
@@ -79522,7 +79556,58 @@ const rooms = [
             x: 0,
             y: floorHeight,
             z: 0
-        }
+        },
+        walls:[
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 70
+                },
+                position: {
+                    x: 65,
+                    y: wallPostionY,
+                    z: -50
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 110
+                },
+                position: {
+                    x: 65,
+                    y: wallPostionY,
+                    z: 95
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 275
+                },
+                position: {
+                    x: -80,
+                    y: wallPostionY,
+                    z: 12.5
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+        ]
     },
     //좌측 영역(연구소)
     {
@@ -79535,7 +79620,25 @@ const rooms = [
             x: -7.5,
             y: floorHeight,
             z: 195
-        }
+        },
+        walls: [
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 90
+                },
+                position: {
+                    x: -80,
+                    y: wallPostionY,
+                    z: 195
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            }
+        ]
     },
     //좌측 영역(서버실1)
     {
@@ -79548,7 +79651,41 @@ const rooms = [
             x: 102.5,
             y: floorHeight,
             z: 170
-        }
+        },
+        walls:[
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 75
+                },
+                position: {
+                    x: 100,
+                    y: wallPostionY,
+                    z: 152.5
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888
+                }
+            },
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 40
+                },
+                position: {
+                    x: 135,
+                    y: wallPostionY,
+                    z: 170
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+        ]
     },
     // //좌측 영역(회의실)
     {
@@ -79561,7 +79698,41 @@ const rooms = [
             x: 102.5,
             y: floorHeight,
             z: 235
-        }
+        },
+        walls: [
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 90
+                },
+                position: {
+                    x: 135,
+                    y: wallPostionY,
+                    z: 235
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 70
+                },
+                position: {
+                    x: 100,
+                    y: wallPostionY,
+                    z: 277.5
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888
+                }
+            },
+        ]
     },
     //좌측 영역(서버실2)
     {
@@ -79574,7 +79745,41 @@ const rooms = [
             x: -7.5,
             y: floorHeight,
             z: 260
-        }
+        },
+        walls: [
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 145
+                },
+                position: {
+                    x: -7.5,
+                    y: wallPostionY,
+                    z: 277.5
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888
+                }
+            },
+            {
+                size: {
+                    width: 5,
+                    height: wallHeight,
+                    depth: 40
+                },
+                position: {
+                    x: -80,
+                    y: wallPostionY,
+                    z: 260
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888
+                }
+            },
+        ]
     }
 ]
 
