@@ -79341,7 +79341,7 @@ const rooms = [
                     depth: 50
                 },
                 position: {
-                    x: -47.5,
+                    x: -50,
                     y: innerWallPostionY,
                     z: -125
                 },
@@ -79352,24 +79352,24 @@ const rooms = [
                     opacity: innerWallOpacity
                 }
             },
-            // {
-            //     size: {
-            //         width: innerWallthickness,
-            //         height: innerWallHeight,
-            //         depth: 35
-            //     },
-            //     position: {
-            //         x: -20,
-            //         y: innerWallPostionY,
-            //         z: -
-            //     },
-            //     option: {
-            //         rotation: false,
-            //         color: 0x888888,
-            //         transparent: true,
-            //         opacity: innerWallOpacity
-            //     }
-            // },
+            {
+                size: {
+                    width: innerWallthickness,
+                    height: innerWallHeight,
+                    depth: 35
+                },
+                position: {
+                    x: -20,
+                    y: innerWallPostionY,
+                    z: -0
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888,
+                    transparent: true,
+                    opacity: innerWallOpacity
+                }
+            },
         ]
     },    
     //공실1
