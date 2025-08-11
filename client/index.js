@@ -122,17 +122,35 @@ const rooms = [
                     depth: 50
                 },
                 position: {
-                    x: 0,
+                    x: -47.5,
                     y: innerWallPostionY,
-                    z: 0
+                    z: -125
                 },
                 option: {
-                    rotation: false,
+                    rotation: true,
                     color: 0x888888,
                     transparent: true,
                     opacity: innerWallOpacity
                 }
-            }
+            },
+            // {
+            //     size: {
+            //         width: innerWallthickness,
+            //         height: innerWallHeight,
+            //         depth: 35
+            //     },
+            //     position: {
+            //         x: -20,
+            //         y: innerWallPostionY,
+            //         z: -
+            //     },
+            //     option: {
+            //         rotation: false,
+            //         color: 0x888888,
+            //         transparent: true,
+            //         opacity: innerWallOpacity
+            //     }
+            // },
         ]
     },    
     //공실1
