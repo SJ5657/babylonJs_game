@@ -5,7 +5,7 @@ import ShapeMesh from './mesh/shape';
 import LineSegment from './segment/line';
 import BoxMesh from './mesh/box';
 
-const type = {
+const floorType = {
     PLANE: 'plane',
     SHAPE: 'shape'
 }
@@ -46,7 +46,7 @@ scene.add(directionalLight);
 //바닥(plane) 생성
 const base = PlaneMesh.create({
     position: { x: 0, y: 0, z: 0 },
-    type: type["PLANE"],
+    type: floorType["PLANE"],
 size:{ width: 600, height: 600 },
     option: { 
         rotationX: true,
@@ -58,14 +58,19 @@ size:{ width: 600, height: 600 },
 scene.add(base);
 
 const floorHeight = 5;
-const wallHeight = 50;
-const wallPostionY = wallHeight / 2 + floorHeight;
+const outerWallHeight = 50;
+const outerWallthickness = 5;
+const innerWallHeight = 40;
+const innerWallthickness = 3;
+const outerWallPostionY = outerWallHeight / 2 + floorHeight;
+const innerWallPostionY = innerWallHeight / 2 + floorHeight;
+const innerWallOpacity = 0.5;
 
 const rooms = [
     //좌측영역
     //사장실
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 55,
             height: 60
@@ -75,16 +80,16 @@ const rooms = [
             y: floorHeight,
             z: -155
         },
-        walls:[
+        outerWalls:[
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 57.5
                 },
                 position: {
                     x: -80,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -153.75
                 },
                 option: {
@@ -94,13 +99,13 @@ const rooms = [
             },
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 50
                 },
                 position: {
                     x: -52.5,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -180
                 },
                 option: {
@@ -108,11 +113,31 @@ const rooms = [
                     color: 0x888888
                 }
             },
+        ],
+        innerWalls: [
+            {
+                size: {
+                    width: innerWallthickness,
+                    height: innerWallHeight,
+                    depth: 50
+                },
+                position: {
+                    x: 0,
+                    y: innerWallPostionY,
+                    z: 0
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888,
+                    transparent: true,
+                    opacity: innerWallOpacity
+                }
+            }
         ]
     },    
     //공실1
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 30,
             height: 35
@@ -122,16 +147,16 @@ const rooms = [
             y: floorHeight,
             z: -167.5
         },
-        walls:[
+        outerWalls:[
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 35
                 },
                 position: {
                     x: -12.5,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -180
                 },
                 option: {
@@ -143,7 +168,7 @@ const rooms = [
     },    
     //공실2
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 30,
             height: 35
@@ -153,16 +178,16 @@ const rooms = [
             y: floorHeight,
             z: -167.5
         },
-        walls:[
+        outerWalls:[
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 35
                 },
                 position: {
                     x: 17.5,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -180
                 },
                 option: {
@@ -174,7 +199,7 @@ const rooms = [
     },    
     //회의실1
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 105,
             height: 35
@@ -184,16 +209,16 @@ const rooms = [
             y: floorHeight,
             z: -167.5
         },
-        walls:[
+        outerWalls:[
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 105
                 },
                 position: {
                     x: 85,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -180
                 },
                 option: {
@@ -203,13 +228,13 @@ const rooms = [
             },
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 30
                 },
                 position: {
                     x: 135,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -165
                 },
                 option: {
@@ -221,7 +246,7 @@ const rooms = [
     },    
     //회의실2
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 55,
             height: 35
@@ -231,16 +256,16 @@ const rooms = [
             y: floorHeight,
             z: -132.5
         },
-        walls:[
+        outerWalls:[
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 35
                 },
                 position: {
                     x: 135,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -132.5
                 },
                 option: {
@@ -252,7 +277,7 @@ const rooms = [
     },    
     //회의실3
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 70,
             height: 35
@@ -262,16 +287,16 @@ const rooms = [
             y: floorHeight,
             z: -97.5
         },
-        walls:[
+        outerWalls:[
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 35
                 },
                 position: {
                     x: 135,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -97.5
                 },
                 option: {
@@ -281,13 +306,13 @@ const rooms = [
             },
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 65
                 },
                 position: {
                     x: 100,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -82.5
                 },
                 option: {
@@ -300,7 +325,7 @@ const rooms = [
     //중간 영역
     //메인 사무실
     {
-        type: type["SHAPE"],
+        type: floorType["SHAPE"],
         points:[
             {
                 x: 0,
@@ -340,16 +365,16 @@ const rooms = [
             y: floorHeight,
             z: 0
         },
-        walls:[
+        outerWalls:[
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 70
                 },
                 position: {
                     x: 65,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: -50
                 },
                 option: {
@@ -359,13 +384,13 @@ const rooms = [
             },
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 110
                 },
                 position: {
                     x: 65,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 95
                 },
                 option: {
@@ -376,13 +401,13 @@ const rooms = [
 
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 275
                 },
                 position: {
                     x: -80,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 12.5
                 },
                 option: {
@@ -394,7 +419,7 @@ const rooms = [
     },
     //좌측 영역(연구소)
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 150,
             height: 90
@@ -404,16 +429,16 @@ const rooms = [
             y: floorHeight,
             z: 195
         },
-        walls: [
+        outerWalls: [
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 90
                 },
                 position: {
                     x: -80,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 195
                 },
                 option: {
@@ -425,7 +450,7 @@ const rooms = [
     },
     //좌측 영역(서버실1)
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 70,
             height: 40
@@ -435,16 +460,16 @@ const rooms = [
             y: floorHeight,
             z: 170
         },
-        walls:[
+        outerWalls:[
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 75
                 },
                 position: {
                     x: 100,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 152.5
                 },
                 option: {
@@ -454,13 +479,13 @@ const rooms = [
             },
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 40
                 },
                 position: {
                     x: 135,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 170
                 },
                 option: {
@@ -472,7 +497,7 @@ const rooms = [
     },
     // //좌측 영역(회의실)
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 70,
             height: 90
@@ -482,16 +507,16 @@ const rooms = [
             y: floorHeight,
             z: 235
         },
-        walls: [
+        outerWalls: [
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 90
                 },
                 position: {
                     x: 135,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 235
                 },
                 option: {
@@ -501,13 +526,13 @@ const rooms = [
             },
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 70
                 },
                 position: {
                     x: 100,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 277.5
                 },
                 option: {
@@ -519,7 +544,7 @@ const rooms = [
     },
     //좌측 영역(서버실2)
     {
-        type: type["PLANE"],
+        type: floorType["PLANE"],
         size:{
             width: 150,
             height: 40
@@ -529,16 +554,16 @@ const rooms = [
             y: floorHeight,
             z: 260
         },
-        walls: [
+        outerWalls: [
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 145
                 },
                 position: {
                     x: -7.5,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 277.5
                 },
                 option: {
@@ -548,13 +573,13 @@ const rooms = [
             },
             {
                 size: {
-                    width: 5,
-                    height: wallHeight,
+                    width: outerWallthickness,
+                    height: outerWallHeight,
                     depth: 40
                 },
                 position: {
                     x: -80,
-                    y: wallPostionY,
+                    y: outerWallPostionY,
                     z: 260
                 },
                 option: {
@@ -568,7 +593,7 @@ const rooms = [
 
 rooms.forEach(room => {
     let floor;
-    if(room["type"] === type["PLANE"]){
+    if(room["type"] === floorType["PLANE"]){
         floor = PlaneMesh.create({
             size: room["size"], 
             position: room["position"], 
@@ -578,7 +603,7 @@ rooms.forEach(room => {
                 side: true
             }
         });
-    }else if(room["type"] === type["SHAPE"]){
+    }else if(room["type"] === floorType["SHAPE"]){
         floor = ShapeMesh.create({
             points: room["points"],
             position: room["position"],
@@ -599,8 +624,8 @@ rooms.forEach(room => {
 
     scene.add(floor, boundaryLine);
 
-    if(room['walls'] && room['walls'].length > 0){
-        room['walls'].forEach(( wall ) => {
+    if(room['outerWalls'] && room['outerWalls'].length > 0){
+        room['outerWalls'].forEach(( wall ) => {
             const boxMesh = BoxMesh.create({
                 size: wall["size"],
                 position: wall["position"],
@@ -612,7 +637,25 @@ rooms.forEach(room => {
             });
             scene.add(boxMesh);
         }) 
-    }  
+    } 
+    if(room['innerWalls'] && room['innerWalls'].length > 0){
+        room['innerWalls'].forEach(( wall ) => {
+            const boxMesh = BoxMesh.create({
+                size: wall["size"],
+                position: wall["position"],
+                option: {
+                    rotationX: false,
+                    rotationY: wall["option"]["rotation"] === true ? true : false,
+                    color: 0xBBBBBB,
+                    transparent: wall["option"]["transparent"],
+                    opacity: wall["option"]["opacity"]
+                }
+            });
+            scene.add(boxMesh);
+        }) 
+    } 
+    
+    
 })
 
 
