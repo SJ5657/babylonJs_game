@@ -79299,17 +79299,17 @@ const rooms = [
             y: floorHeight,
             z: -155
         },
-        outerWalls:[
+        outerWalls: [
             {
                 size: {
                     width: outerWallthickness,
                     height: outerWallHeight,
-                    depth: 57.5
+                    depth: 60
                 },
                 position: {
                     x: -80,
                     y: outerWallPostionY,
-                    z: -153.75
+                    z: -155
                 },
                 option: {
                     rotation: false,
@@ -79325,7 +79325,7 @@ const rooms = [
                 position: {
                     x: -52.5,
                     y: outerWallPostionY,
-                    z: -180
+                    z: -182.5
                 },
                 option: {
                     rotation: true,
@@ -79341,9 +79341,9 @@ const rooms = [
                     depth: 50
                 },
                 position: {
-                    x: -50,
+                    x: -52.5,
                     y: innerWallPostionY,
-                    z: -125
+                    z: -126.5
                 },
                 option: {
                     rotation: true,
@@ -79356,12 +79356,30 @@ const rooms = [
                 size: {
                     width: innerWallthickness,
                     height: innerWallHeight,
-                    depth: 35
+                    depth: 1
                 },
                 position: {
-                    x: -20,
+                    x: -29,
                     y: innerWallPostionY,
-                    z: -0
+                    z: -128.5
+                },
+                option: {
+                    rotation: false,
+                    color: 0x888888,
+                    transparent: true,
+                    opacity: innerWallOpacity
+                }
+            },
+            {
+                size: {
+                    width: innerWallthickness,
+                    height: innerWallHeight,
+                    depth: 36
+                },
+                position: {
+                    x: -29,
+                    y: innerWallPostionY,
+                    z: -162
                 },
                 option: {
                     rotation: false,
@@ -79394,11 +79412,49 @@ const rooms = [
                 position: {
                     x: -12.5,
                     y: outerWallPostionY,
-                    z: -180
+                    z: -182.5
                 },
                 option: {
                     rotation: true,
                     color: 0x888888
+                }
+            },
+        ],
+        innerWalls: [
+            {
+                size: {
+                    width: innerWallthickness,
+                    height: innerWallHeight,
+                    depth: 9
+                },
+                position: {
+                    x: -23,
+                    y: innerWallPostionY,
+                    z: -151.5
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888,
+                    transparent: true,
+                    opacity: innerWallOpacity
+                }
+            },
+            {
+                size: {
+                    width: innerWallthickness,
+                    height: innerWallHeight,
+                    depth: 1
+                },
+                position: {
+                    x: -8,
+                    y: innerWallPostionY,
+                    z: -151.5
+                },
+                option: {
+                    rotation: true,
+                    color: 0x888888,
+                    transparent: true,
+                    opacity: innerWallOpacity
                 }
             },
         ]
@@ -79425,7 +79481,7 @@ const rooms = [
                 position: {
                     x: 17.5,
                     y: outerWallPostionY,
-                    z: -180
+                    z: -182.5
                 },
                 option: {
                     rotation: true,
@@ -79456,7 +79512,7 @@ const rooms = [
                 position: {
                     x: 85,
                     y: outerWallPostionY,
-                    z: -180
+                    z: -182.5
                 },
                 option: {
                     rotation: true,
