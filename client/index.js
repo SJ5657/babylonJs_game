@@ -119,12 +119,12 @@ const rooms = [
                 size: {
                     width: innerWallthickness,
                     height: innerWallHeight,
-                    depth: 50
+                    depth: 53
                 },
                 position: {
-                    x: -52.5,
+                    x: -51,
                     y: innerWallPostionY,
-                    z: -126.5
+                    z: -123.5
                 },
                 option: {
                     rotation: true,
@@ -140,9 +140,9 @@ const rooms = [
                     depth: 1
                 },
                 position: {
-                    x: -29,
+                    x: -26,
                     y: innerWallPostionY,
-                    z: -128.5
+                    z: -125.5
                 },
                 option: {
                     rotation: false,
@@ -155,12 +155,12 @@ const rooms = [
                 size: {
                     width: innerWallthickness,
                     height: innerWallHeight,
-                    depth: 36
+                    depth: 40
                 },
                 position: {
-                    x: -29,
+                    x: -26,
                     y: innerWallPostionY,
-                    z: -162
+                    z: -160
                 },
                 option: {
                     rotation: false,
@@ -179,7 +179,7 @@ const rooms = [
             height: 35
         },
         position: {
-            x: -12.5,
+            x: -8.5,
             y: floorHeight,
             z: -167.5
         },
@@ -200,44 +200,6 @@ const rooms = [
                     color: 0x888888
                 }
             },
-        ],
-        innerWalls: [
-            {
-                size: {
-                    width: innerWallthickness,
-                    height: innerWallHeight,
-                    depth: 9
-                },
-                position: {
-                    x: -23,
-                    y: innerWallPostionY,
-                    z: -151.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888,
-                    transparent: true,
-                    opacity: innerWallOpacity
-                }
-            },
-            {
-                size: {
-                    width: innerWallthickness,
-                    height: innerWallHeight,
-                    depth: 1
-                },
-                position: {
-                    x: -8,
-                    y: innerWallPostionY,
-                    z: -151.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888,
-                    transparent: true,
-                    opacity: innerWallOpacity
-                }
-            },
         ]
     },    
     //공실2
@@ -248,7 +210,7 @@ const rooms = [
             height: 35
         },
         position: {
-            x: 17.5,
+            x: 13.5,
             y: floorHeight,
             z: -167.5
         },
@@ -275,11 +237,11 @@ const rooms = [
     {
         type: floorType["PLANE"],
         size:{
-            width: 105,
+            width: 101,
             height: 35
         },
         position: {
-            x: 85,
+            x: 83,
             y: floorHeight,
             z: -167.5
         },
@@ -317,7 +279,8 @@ const rooms = [
                 }
             },
         ]
-    },    
+    },  
+
     //회의실2
     {
         type: floorType["PLANE"],
@@ -413,6 +376,20 @@ const rooms = [
                 x: 55,
                 y: 275
             },
+
+            {
+                x: 55,
+                y: 290
+            },
+            {
+                x: 58,
+                y: 290
+            },
+            {
+                x: 58,
+                y: 300
+            },
+
             {
                 x: 55,
                 y: 300
