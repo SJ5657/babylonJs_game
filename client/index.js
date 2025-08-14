@@ -73,431 +73,262 @@ const rooms = [
         type: floorType["PLANE"],
         size:{
             width: 55,
-            height: 60
+            height: 70
         },
         position: {
             x: -55,
             y: floorHeight,
-            z: -155
-        },
-        outerWalls: [
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 60
-                },
-                position: {
-                    x: -80,
-                    y: outerWallPostionY,
-                    z: -155
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 50
-                },
-                position: {
-                    x: -52.5,
-                    y: outerWallPostionY,
-                    z: -182.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888
-                }
-            },
-        ],
-        innerWalls: [
-            {
-                size: {
-                    width: innerWallthickness,
-                    height: innerWallHeight,
-                    depth: 53
-                },
-                position: {
-                    x: -51,
-                    y: innerWallPostionY,
-                    z: -123.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888,
-                    transparent: true,
-                    opacity: innerWallOpacity
-                }
-            },
-            {
-                size: {
-                    width: innerWallthickness,
-                    height: innerWallHeight,
-                    depth: 1
-                },
-                position: {
-                    x: -26,
-                    y: innerWallPostionY,
-                    z: -125.5
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888,
-                    transparent: true,
-                    opacity: innerWallOpacity
-                }
-            },
-            {
-                size: {
-                    width: innerWallthickness,
-                    height: innerWallHeight,
-                    depth: 40
-                },
-                position: {
-                    x: -26,
-                    y: innerWallPostionY,
-                    z: -160
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888,
-                    transparent: true,
-                    opacity: innerWallOpacity
-                }
-            },
-        ]
+            z: -160
+        }
     },    
     //공실1
     {
         type: floorType["PLANE"],
         size:{
             width: 30,
-            height: 35
+            height: 42
         },
         position: {
-            x: -8.5,
+            x: -9.5,
             y: floorHeight,
-            z: -167.5
-        },
-        outerWalls:[
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 35
-                },
-                position: {
-                    x: -12.5,
-                    y: outerWallPostionY,
-                    z: -182.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888
-                }
-            },
-        ]
+            z: -174
+        }
     },    
     //공실2
     {
         type: floorType["PLANE"],
         size:{
             width: 30,
-            height: 35
+            height: 42
         },
         position: {
-            x: 13.5,
+            x: 23.5,
             y: floorHeight,
-            z: -167.5
-        },
-        outerWalls:[
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 35
-                },
-                position: {
-                    x: 17.5,
-                    y: outerWallPostionY,
-                    z: -182.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888
-                }
-            },
-        ]
+            z: -174
+        }
     },    
     //회의실1
     {
         type: floorType["PLANE"],
         size:{
-            width: 101,
-            height: 35
+            width: 96,
+            height: 42
         },
         position: {
-            x: 83,
+            x: 89.5,
             y: floorHeight,
-            z: -167.5
-        },
-        outerWalls:[
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 105
-                },
-                position: {
-                    x: 85,
-                    y: outerWallPostionY,
-                    z: -182.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888
-                }
-            },
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 30
-                },
-                position: {
-                    x: 135,
-                    y: outerWallPostionY,
-                    z: -165
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-        ]
+            z: -174
+        }
     },  
 
     //회의실2
     {
         type: floorType["PLANE"],
         size:{
-            width: 55,
-            height: 35
+            width: 52,
+            height: 32
         },
         position: {
-            x: 110,
+            x: 111.5,
             y: floorHeight,
-            z: -132.5
-        },
-        outerWalls:[
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 35
-                },
-                position: {
-                    x: 135,
-                    y: outerWallPostionY,
-                    z: -132.5
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-        ]
+            z: -134
+        }
     },    
     //회의실3
     {
         type: floorType["PLANE"],
         size:{
             width: 70,
-            height: 35
+            height: 32
         },
         position: {
             x: 102.5,
             y: floorHeight,
-            z: -97.5
-        },
-        outerWalls:[
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 35
-                },
-                position: {
-                    x: 135,
-                    y: outerWallPostionY,
-                    z: -97.5
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 65
-                },
-                position: {
-                    x: 100,
-                    y: outerWallPostionY,
-                    z: -82.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888
-                }
-            },
-        ]
+            z: -99
+        }
     },   
     //중간 영역
     //메인 사무실
     {
         type: floorType["SHAPE"],
         points:[
+            //좌측 면 시작점
             {
                 x: 0,
                 y: 0
             },
             {
                 x: 0,
-                y: 275
-            },
-            {
-                x: 55,
-                y: 275
+                y: 272
             },
 
+            //상단 면 전환
+
+            {
+                x: 58,
+                y: 272
+            },
+
+            //문
+            {
+                x: 58,
+                y: 276
+            },
             {
                 x: 55,
-                y: 290
+                y: 276
+            },
+            {
+                x: 55,
+                y: 289
             },
             {
                 x: 58,
-                y: 290
+                y: 289
             },
+
             {
                 x: 58,
                 y: 300
             },
 
+            //문
+            {
+                x: 74,
+                y: 300
+            },
+            {
+                x: 74,
+                y: 303
+            },
+            {
+                x: 87,
+                y: 303
+            },
+            {
+                x: 87,
+                y: 300
+            },
+            //문
+            {
+                x: 107,
+                y: 300
+            },
+            {
+                x: 107,
+                y: 303
+            },
+            {
+                x: 120,
+                y: 303
+            },
+            {
+                x: 120,
+                y: 300
+            },
+
+            //문
+            {
+                x: 130,
+                y: 300
+            },
+            {
+                x: 130,
+                y: 303
+            },
+            {
+                x: 143,
+                y: 303
+            },
+            {
+                x: 143,
+                y: 300
+            },
+            
             {
                 x: 55,
                 y: 300
             },
+
+            //우측 면 쪽으로 반향 전환
             {
                 x: 165,
                 y: 300
             },
+
+            //문
             {
                 x: 165,
+                y: 295
+            },
+            {
+                x: 168,
+                y: 295
+            },
+            {
+                x: 168,
+                y: 282
+            },
+            {
+                x: 165,
+                y: 282
+            },
+
+            {
+                x: 165,
+                y: 268
+            },
+
+            //문
+            {
+                x: 164,
+                y: 268
+            },
+            {
+                x: 164,
                 y: 265
             },
             {
-                x: 150,
+                x: 151,
                 y: 265
             },
             {
+                x: 151,
+                y: 268
+            },
+
+            {
                 x: 150,
+                y: 268
+            },
+            {
+                x: 147,
+                y: 268
+            },
+
+            {
+                x: 147,
                 y: 0
             },
         ],
         position: {
-            x: 0,
+            x: 1.5,
             y: floorHeight,
-            z: 0
-        },
-        outerWalls:[
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 70
-                },
-                position: {
-                    x: 65,
-                    y: outerWallPostionY,
-                    z: -50
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 110
-                },
-                position: {
-                    x: 65,
-                    y: outerWallPostionY,
-                    z: 95
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 275
-                },
-                position: {
-                    x: -80,
-                    y: outerWallPostionY,
-                    z: 12.5
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-        ]
+            z: -1.5
+        }
     },
     //좌측 영역(연구소)
     {
         type: floorType["PLANE"],
         size:{
-            width: 150,
+            width: 147,
             height: 90
         },
         position: {
-            x: -7.5,
+            x: -9,
             y: floorHeight,
             z: 195
-        },
-        outerWalls: [
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 90
-                },
-                position: {
-                    x: -80,
-                    y: outerWallPostionY,
-                    z: 195
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            }
-        ]
+        }
     },
     //좌측 영역(서버실1)
     {
@@ -507,44 +338,10 @@ const rooms = [
             height: 40
         },
         position: {
-            x: 102.5,
+            x: 99.5,
             y: floorHeight,
             z: 170
-        },
-        outerWalls:[
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 75
-                },
-                position: {
-                    x: 100,
-                    y: outerWallPostionY,
-                    z: 152.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888
-                }
-            },
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 40
-                },
-                position: {
-                    x: 135,
-                    y: outerWallPostionY,
-                    z: 170
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-        ]
+        }
     },
     // //좌측 영역(회의실)
     {
@@ -554,91 +351,23 @@ const rooms = [
             height: 90
         },
         position: {
-            x: 102.5,
+            x: 99.5,
             y: floorHeight,
             z: 235
-        },
-        outerWalls: [
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 90
-                },
-                position: {
-                    x: 135,
-                    y: outerWallPostionY,
-                    z: 235
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 70
-                },
-                position: {
-                    x: 100,
-                    y: outerWallPostionY,
-                    z: 277.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888
-                }
-            },
-        ]
+        }
     },
     //좌측 영역(서버실2)
     {
         type: floorType["PLANE"],
         size:{
-            width: 150,
+            width: 147,
             height: 40
         },
         position: {
-            x: -7.5,
+            x: -9,
             y: floorHeight,
             z: 260
-        },
-        outerWalls: [
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 145
-                },
-                position: {
-                    x: -7.5,
-                    y: outerWallPostionY,
-                    z: 277.5
-                },
-                option: {
-                    rotation: true,
-                    color: 0x888888
-                }
-            },
-            {
-                size: {
-                    width: outerWallthickness,
-                    height: outerWallHeight,
-                    depth: 40
-                },
-                position: {
-                    x: -80,
-                    y: outerWallPostionY,
-                    z: 260
-                },
-                option: {
-                    rotation: false,
-                    color: 0x888888
-                }
-            },
-        ]
+        }
     }
 ]
 
@@ -674,40 +403,11 @@ rooms.forEach(room => {
     });
 
     scene.add(floor, boundaryLine);
-
-    if(room['outerWalls'] && room['outerWalls'].length > 0){
-        room['outerWalls'].forEach(( wall ) => {
-            const boxMesh = BoxMesh.create({
-                size: wall["size"],
-                position: wall["position"],
-                option: {
-                    rotationX: false,
-                    rotationY: wall["option"]["rotation"] === true ? true : false,
-                    color: 0xBBBBBB 
-                }
-            });
-            scene.add(boxMesh);
-        }) 
-    } 
-    if(room['innerWalls'] && room['innerWalls'].length > 0){
-        room['innerWalls'].forEach(( wall ) => {
-            const boxMesh = BoxMesh.create({
-                size: wall["size"],
-                position: wall["position"],
-                option: {
-                    rotationX: false,
-                    rotationY: wall["option"]["rotation"] === true ? true : false,
-                    color: 0xBBBBBB,
-                    transparent: wall["option"]["transparent"],
-                    opacity: wall["option"]["opacity"]
-                }
-            });
-            scene.add(boxMesh);
-        }) 
-    } 
+ 
     
     
 })
+
 
 
 
