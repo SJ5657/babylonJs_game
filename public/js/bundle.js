@@ -79529,24 +79529,116 @@ const rooms = [
                 x: 147,
                 y: 0
             },
+            //문
+            {
+                x: 146,
+                y: 0
+            },
+            {
+                x: 146,
+                y: -2
+            },
+            {
+                x: 132,
+                y: -2
+            },
+            {
+                x: 132,
+                y: 0
+            },
         ],
         position: {
             x: 1.5,
             y: floorHeight,
-            z: -1.5
+            z: -0.5
         }
     },
     //좌측 영역(연구소)
     {
-        type: floorType["PLANE"],
+        type: floorType["SHAPE"],
         size:{
             width: 147,
             height: 90
         },
+        points:[
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 90
+            },
+            {
+                x: 147,
+                y: 90
+            },
+
+            //문
+            {
+                x: 147,
+                y: 89
+            },
+            {
+                x: 150,
+                y: 89
+            },
+            {
+                x: 150,
+                y: 75
+            },
+            {
+                x: 147,
+                y: 75
+            },
+
+            {
+                x: 147,
+                y: 0
+            },
+
+            //문
+            {
+                x: 146,
+                y: 0
+            },
+            {
+                x: 146,
+                y: -3
+            },
+            {
+                x: 132,
+                y: -3
+            },
+            {
+                x: 132,
+                y: 0
+            },
+
+            //문
+            {
+                x: 117,
+                y: 0
+            },
+            {
+                x: 117,
+                y: -3
+            },
+            {
+                x: 103,
+                y: -3
+            },
+            {
+                x: 103,
+                y: 0
+            },
+
+
+        ],
         position: {
-            x: -9,
+            x: -7.5,
             y: floorHeight,
-            z: 195
+            z: 198.5
         }
     },
     //좌측 영역(서버실1)
@@ -79557,35 +79649,61 @@ const rooms = [
             height: 40
         },
         position: {
-            x: 99.5,
+            x: 102.5,
             y: floorHeight,
-            z: 170
+            z: 172
         }
     },
     // //좌측 영역(회의실)
     {
-        type: floorType["PLANE"],
+        type: floorType["SHAPE"],
         size:{
             width: 70,
             height: 90
         },
+        points: [
+            {
+                x: 0,
+                y: 0
+            },
+            {
+                x: 0,
+                y: 40
+            },
+            {
+                x: 25,
+                y: 40
+            },
+            {
+                x: 25,
+                y: 90
+            },
+            {
+                x: 95,
+                y: 90
+            },
+            {
+                x: 95,
+                y: 0
+            }
+        ],
         position: {
-            x: 99.5,
+            x: 90,
             y: floorHeight,
-            z: 235
+            z: 240
         }
     },
     //좌측 영역(서버실2)
     {
         type: floorType["PLANE"],
         size:{
-            width: 147,
+            width: 122,
             height: 40
         },
         position: {
-            x: -9,
+            x: -21.5,
             y: floorHeight,
-            z: 260
+            z: 265
         }
     }
 ]
