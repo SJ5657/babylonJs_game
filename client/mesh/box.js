@@ -17,7 +17,7 @@ export default class BoxMesh {
             rotationY: false,
             color: 0x888888,
             transparent: false,
-            opacity: 0.5                     
+            opacity: 0.5,
         }
     }) => {
         const { width, height, depth } = size;
@@ -26,8 +26,8 @@ export default class BoxMesh {
         const geometry = new THREE.BoxGeometry(width, height, depth);
         const material = new THREE.MeshStandardMaterial({ color, transparent, opacity });
         const mesh = new THREE.Mesh(geometry, material);
-        if(rotationX) mesh.rotation.x = -Math.PI / 2;
-        if(rotationY) mesh.rotation.y = -Math.PI / 2;
+        if( rotationX ) mesh.rotation.x = -Math.PI / 2;
+        if( rotationY ) mesh.rotation.y = -Math.PI / 2;
         mesh.position.set(x, y, z);
         return mesh;
 

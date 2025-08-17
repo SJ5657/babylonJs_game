@@ -65,7 +65,8 @@ const innerWallthickness = 3;
 const outerWallPostionY = outerWallHeight / 2 + floorHeight;
 const innerWallPostionY = innerWallHeight / 2 + floorHeight;
 const innerWallColor = 0x888888;
-const innerWallOpacity = 0.1;
+const innerWallTransparent = true;
+const innerWallOpacity = 1;
 
 const rooms = [
     //좌측영역
@@ -499,15 +500,243 @@ const interiorWalls =[
             depth: 55
         },
         position: {
-            x: 0, 
+            x: -55, 
             y: innerWallPostionY, 
-            z: 0
+            z: -123.5
         },
         option: {
-            rotationX: true,
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity,
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 4
+        },
+        position: {
+            x: -26, 
+            y: innerWallPostionY, 
+            z: -124
+        },
+        option: {
+            rotationX: false,
             rotationY: false,
             color: innerWallColor,
-            transparent: false,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 56
+        },
+        position: {
+            x: -26, 
+            y: innerWallPostionY, 
+            z: -167
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 16
+        },
+        position: {
+            x: -16.5, 
+            y: innerWallPostionY, 
+            z: -151.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 42
+        },
+        position: {
+            x: 7, 
+            y: innerWallPostionY, 
+            z: -174
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 20
+        },
+        position: {
+            x: 14.5, 
+            y: innerWallPostionY, 
+            z: -151.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 42
+        },
+        position: {
+            x: 40, 
+            y: innerWallPostionY, 
+            z: -174 
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 10
+        },
+        position: {
+            x: 42.5, 
+            y: innerWallPostionY, 
+            z: -151.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 10
+        },
+        position: {
+            x: 42.5, 
+            y: innerWallPostionY, 
+            z: -151.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 77
+        },
+        position: {
+            x: 99, 
+            y: innerWallPostionY, 
+            z: -151.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 5
+        },
+        position: {
+            x: 84, 
+            y: innerWallPostionY, 
+            z: -147.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 16
+        },
+        position: {
+            x: 84, 
+            y: innerWallPostionY, 
+            z: -126
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 56
+        },
+        position: {
+            x: 109.5, 
+            y: innerWallPostionY, 
+            z: -116.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
             opacity: innerWallOpacity      
         }
     },
@@ -548,6 +777,7 @@ rooms.forEach(room => {
 })
 
 interiorWalls.forEach(( wall ) => {
+    console.log(wall);
     const mesh = BoxMesh.create(wall);
     scene.add(mesh);
 })
