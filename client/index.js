@@ -740,6 +740,25 @@ const interiorWalls =[
             opacity: innerWallOpacity      
         }
     },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 4
+        },
+        position: {
+            x: 66.5, 
+            y: innerWallPostionY, 
+            z: -116.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
 ] 
 
 rooms.forEach(room => {
