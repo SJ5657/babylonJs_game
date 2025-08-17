@@ -60,11 +60,12 @@ scene.add(base);
 const floorHeight = 5;
 const outerWallHeight = 50;
 const outerWallthickness = 5;
-const innerWallHeight = 40;
+const innerWallHeight = 50;
 const innerWallthickness = 3;
 const outerWallPostionY = outerWallHeight / 2 + floorHeight;
 const innerWallPostionY = innerWallHeight / 2 + floorHeight;
-const innerWallOpacity = 0.5;
+const innerWallColor = 0x888888;
+const innerWallOpacity = 0.1;
 
 const rooms = [
     //좌측영역
@@ -489,6 +490,29 @@ const rooms = [
     }
 ]
 
+
+const interiorWalls =[
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 55
+        },
+        position: {
+            x: 0, 
+            y: innerWallPostionY, 
+            z: 0
+        },
+        option: {
+            rotationX: true,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: false,
+            opacity: innerWallOpacity      
+        }
+    },
+] 
+
 rooms.forEach(room => {
     let floor;
     if(room["type"] === floorType["PLANE"]){
@@ -521,9 +545,11 @@ rooms.forEach(room => {
     });
 
     scene.add(floor, boundaryLine);
- 
-    
-    
+})
+
+interiorWalls.forEach(( wall ) => {
+    const mesh = BoxMesh.create(wall);
+    scene.add(mesh);
 })
 
 
