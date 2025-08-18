@@ -79283,8 +79283,11 @@ const innerWallHeight = 50;
 const innerWallthickness = 3;
 const outerWallPostionY = outerWallHeight / 2 + floorHeight;
 const innerWallPostionY = innerWallHeight / 2 + floorHeight;
+const outerWallColor = 0x888888;
 const innerWallColor = 0x888888;
+const outerWallTransparent = false;
 const innerWallTransparent = true;
+const outerWallOpacity = 1;
 const innerWallOpacity = 1;
 
 const rooms = [
@@ -79558,10 +79561,6 @@ const rooms = [
     //좌측 영역(연구소)
     {
         type: floorType["SHAPE"],
-        size:{
-            width: 147,
-            height: 90
-        },
         points:[
             {
                 x: 0,
@@ -79711,7 +79710,67 @@ const rooms = [
 ]
 
 
-const interiorWalls =[
+const outerWalls = [
+    {
+        size: {
+            width: outerWallthickness,
+            height: outerWallHeight,
+            depth: 58
+        },
+        position: {
+            x: 67, 
+            y: outerWallPostionY, 
+            z: -54
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: outerWallColor,
+            transparent: outerWallTransparent,
+            opacity: outerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: outerWallthickness,
+            height: outerWallHeight,
+            depth: 120
+        },
+        position: {
+            x: 67, 
+            y: outerWallPostionY, 
+            z: 90
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: outerWallColor,
+            transparent: outerWallTransparent,
+            opacity: outerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: outerWallthickness,
+            height: outerWallHeight,
+            depth: 68
+        },
+        position: {
+            x: 103.5, 
+            y: outerWallPostionY, 
+            z: 149.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: outerWallColor,
+            transparent: outerWallTransparent,
+            opacity: outerWallOpacity      
+        }
+    },
+
+]
+const interiorWalls = [
     {
         size: {
             width: innerWallthickness,
@@ -79978,6 +80037,85 @@ const interiorWalls =[
             opacity: innerWallOpacity      
         }
     },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 32
+        },
+        position: {
+            x: 66, 
+            y: innerWallPostionY, 
+            z: -99
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: 2,
+            height: innerWallHeight,
+            depth: 6
+        },
+        position: {
+            x: 66.5, 
+            y: innerWallPostionY, 
+            z: 151
+        },
+        option: {
+            rotationX: false,
+            rotationY: true,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 1
+        },
+        position: {
+            x: 66, 
+            y: innerWallPostionY, 
+            z: 152.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 1
+        },
+        position: {
+            x: 66, 
+            y: innerWallPostionY, 
+            z: 152.5
+        },
+        option: {
+            rotationX: false,
+            rotationY: false,
+            color: innerWallColor,
+            transparent: innerWallTransparent,
+            opacity: innerWallOpacity      
+        }
+    },
+
+  
+    
 ] 
 
 rooms.forEach(room => {
@@ -80015,7 +80153,10 @@ rooms.forEach(room => {
 })
 
 interiorWalls.forEach(( wall ) => {
-    console.log(wall);
+    const mesh = _mesh_box__WEBPACK_IMPORTED_MODULE_3__["default"].create(wall);
+    scene.add(mesh);
+})
+outerWalls.forEach(( wall ) => {
     const mesh = _mesh_box__WEBPACK_IMPORTED_MODULE_3__["default"].create(wall);
     scene.add(mesh);
 })
