@@ -71,6 +71,22 @@ const innerWallTransparent = true;
 const outerWallOpacity = 1;
 const innerWallOpacity = 1;
 
+const outerWallOption = {
+    rotationX: false,
+    rotationY: false,
+    color: outerWallColor,
+    transparent: outerWallTransparent,
+    opacity: outerWallOpacity      
+};
+
+const innerWallOption = {
+    rotationX: false,
+    rotationY: false,
+    color: innerWallColor,
+    transparent: innerWallTransparent,
+    opacity: innerWallOpacity   
+}
+
 const rooms = [
     //좌측영역
     //사장실
@@ -503,13 +519,7 @@ const outerWalls = [
             y: outerWallPostionY, 
             z: -54
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: outerWallColor,
-            transparent: outerWallTransparent,
-            opacity: outerWallOpacity      
-        }
+        option: outerWallOption
     },
     {
         size: {
@@ -522,13 +532,7 @@ const outerWalls = [
             y: outerWallPostionY, 
             z: 90
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: outerWallColor,
-            transparent: outerWallTransparent,
-            opacity: outerWallOpacity      
-        }
+        option: outerWallOption
     },
     {
         size: {
@@ -582,13 +586,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: -124
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
     {
         size: {
@@ -601,13 +599,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: -167
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
     {
         size: {
@@ -639,13 +631,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: -174
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
     {
         size: {
@@ -677,13 +663,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: -174 
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
     {
         size: {
@@ -753,13 +733,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: -147.5
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
     {
         size: {
@@ -772,13 +746,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: -126
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
     {
         size: {
@@ -829,13 +797,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: -99
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
     {
         size: {
@@ -867,13 +829,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: 152.5
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
     {
         size: {
@@ -886,13 +842,7 @@ const interiorWalls = [
             y: innerWallPostionY, 
             z: 152.5
         },
-        option: {
-            rotationX: false,
-            rotationY: false,
-            color: innerWallColor,
-            transparent: innerWallTransparent,
-            opacity: innerWallOpacity      
-        }
+        option: innerWallOption
     },
 
   
