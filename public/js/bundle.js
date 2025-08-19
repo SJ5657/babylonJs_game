@@ -80063,6 +80063,67 @@ const interiorWalls = [
         },
         option: innerWallOption
     },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 76                                                                                                  
+        },
+        position: {
+            x: 66, 
+            y: innerWallPostionY, 
+            z: 204
+        },
+        option: innerWallOption
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 70                                                                                                  
+        },
+        position: {
+            x: 102.5, 
+            y: innerWallPostionY, 
+            z: 193.5
+        },
+        option: {
+            ...innerWallOption,
+            rotationY: true
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 4                                                                                                
+        },
+        position: {
+            x: 65.5, 
+            y: innerWallPostionY, 
+            z: 243.5
+        },
+        option: {
+            ...innerWallOption,
+            rotationY: true
+        }
+    },
+    {
+        size: {
+            width: innerWallthickness,
+            height: innerWallHeight,
+            depth: 15                                                                                                
+        },
+        position: {
+            x: 42, 
+            y: innerWallPostionY, 
+            z: 243.5
+        },
+        option: {
+            ...innerWallOption,
+            rotationY: true
+        }
+    },
 
   
     
