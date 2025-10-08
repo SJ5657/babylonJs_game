@@ -32,7 +32,7 @@ const createScene = () => {
     // 첫 번째 인자는 조명 이름, 두 번째 인자는 빛이 오는 방향 벡터
     const light = new Babylon.HemisphericLight(
         'light',                        // 조명 이름
-        new Babylon.Vector2(1, 1, 0),   // 빛이 오는 방향 백터
+        new Babylon.Vector3(1, 1, 0),   // 빛이 오는 방향 백터
         scene                           // 추가되는 scene객체
     );
 
@@ -83,6 +83,33 @@ const createScene = () => {
     scene.onBeforeRenderObservable.add(() => {
         //getForwardRay: 카메라가 바라보는 방향 벡터값(Babylon.Ray 객체) 반환
         const forward = camera.getForwardRay().direction;
-        const right = Babylon.Vector3.Cross(forward, Babylon/Axis)
-    })
+
+        //Babylon.Vector3.Cross: 백터 외적 생성 함수 
+        //Vector3.normalize(): 백터의 방향은 그대로 두고, 크기 및 길이를 1로 수정
+        const right = Babylon.Vector3.Cross( Babylon.Axis.Y, forward ).normalize();
+
+        let move = Babylon.Vector3.Zero();
+
+        if ( keys.w ) move = move.add( forward );
+        if ( keys.s ) move = move.subtract( forward );
+        if ( keys.a ) move = move.subtract( right );
+        if ( keys.d ) move = move.add( right );
+
+        move.y = 0;
+        move.normalize();
+
+        //플레이어 이동 (충돌방지)
+        player.moveWithCollisions( move.scale( moveSpeed ) ); 
+    });
+
+    return scene;
 }
+
+const scene = createScene();
+
+//engine.runRenderLoop: 프레임 자동 갱신 허용
+engine.runRenderLoop(() => {
+    scene.render() // 프레임마다 실행할 콜백함수 등록 
+});
+
+window.addEventListener("resize", () => engine.resize());

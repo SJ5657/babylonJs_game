@@ -3,8 +3,21 @@
     <head>
         <title>incon 3d map</title>
     </head>
-    <body style="margin: 0px;">
-        <div id="viewer"></div>
+    <body>
+        <canvas id="canvase_viewer"></canvas>
     </body>
 </html>
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;   /* 스크롤바 방지 */
+      }
+      #canvase_viewer {
+        width: 100%;
+        height: 100%;
+        display: block;     /* 인라인 공백/줄바꿈 이슈 방지 */
+      }
+    </style>
 <script src="js/bundle.js" type="module"></script>
