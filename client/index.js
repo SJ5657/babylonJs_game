@@ -9,23 +9,6 @@ const createScene = () => {
     //씬 생성
     const scene = new Babylon.Scene(engine);
     scene.clearColor = new Babylon.Color3(0.5, 0.7, 1.0);
-    
-
-    //카메라 생성
-    const camera = new Babylon.ArcRotateCamera(
-        "camera",                   //카메라 이름
-        Math.PI / 2,                //alpha: 타켓을 기준으로, 좌우회전값 (카메라 좌우 위치)
-        Math.PI / 3,                //beta: 타겟을 기준으로, 수직회전값 (카메라 수직 위치)
-        10,                         //radius: 카메라와 타겟간 거리
-        Babylon.Vector3.Zero(),     //TAGER:카메라가 바라볼 대상의 좌표
-        scene                       //scene: scene 객체
-    );
-    //카메라 조작 허용(마우스 / 키보드로)
-    camera.attachControl(
-        canvas, 
-        true                        //브라우저 기본 동작 허용(마우스 드래그 중 텍스트 선택 / 스크롤 허용)
-    );
-
 
     //조명 생성
     // HemisphericLight: 장면 전체에 부드럽고 균일한 빛을 주는 기본 조명 (하늘빛 느낌)
@@ -44,6 +27,15 @@ const createScene = () => {
         scene
     );
     player.position.y = 0.5;
+
+
+    //플레이어를 따라다니는 카메라
+    const camera = new Babylon.FollowCamera(
+        "cam",
+        new Babylon.Vector3(0, 5, -10),
+        scene,
+        player
+    );
 
 
     // 바닥 생성 
