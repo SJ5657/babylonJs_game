@@ -34,5 +34,21 @@ const createScene = async () => {
     // 파일 위치에 맞게 경로/파일명 수정
     const result = await BABYLON.ImportMeshAsync("player", "/assets/", "player.glb", scene);
 
-    
+    const visualRoot = new BABYLON.TransformNode("visualRoot", scene);
+    result.meshes.forEach(m => {
+        if( m instanceof BABYLON.Mesh && m.name !== "visualRoot" ){
+            m.parent = visualRoot
+        }
+    });
+    visualRoot.scailing = new BABYLON.Vector3(1, 1, 1);
+    visualRoot.position.y = -0.9;
+
+    const collider = new BABYLON.MeshBuilder.CreateBox(
+        "playerCollider",
+        { width: 0.8, depth }
+    )
+
+
+
+
 }
