@@ -40,13 +40,29 @@ const createScene = async () => {
             m.parent = visualRoot
         }
     });
+    //크기/원점 보정(원본 유지)
     visualRoot.scailing = new BABYLON.Vector3(1, 1, 1);
+    //발이 지면 바로 위에 오도록, 캐릭터 y위치 변경
     visualRoot.position.y = -0.9;
 
+    //캐릭터 충돌영역 생성
     const collider = new BABYLON.MeshBuilder.CreateBox(
         "playerCollider",
-        { width: 0.8, depth }
-    )
+        { width: 0.8, depth: 0.8, height: 1.8 }
+    );
+    collider.isVisible = false;
+    collider.position = new BABYLON.Vector3(0, 0.9, 0);
+    collider.checkCollisions = true;
+    //실질적인 충돌영역설정(타원체 크기)
+    collider.ellipsoid = new BABYLON.Vector3(0.4, 0.9, 0.4);
+    collider.ellipsoidOffset = new BABYLON.Vector3(0, 0.9, 0);
+
+    //로드된 캐릭터를 콜라이더에 붙임
+    visualRoot.parent = collider;
+
+    //카메라 타겟을 콜라이더로 변경(캐릭터 중심 추적)
+    camera.lockedTarget = collider;
+    
 
 
 
