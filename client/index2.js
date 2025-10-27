@@ -62,6 +62,52 @@ const createScene = async () => {
 
     //카메라 타겟을 콜라이더로 변경(캐릭터 중심 추적)
     camera.lockedTarget = collider;
+
+    const groups = result.animationGroups || [];
+    const findAnim = ( namePart ) => groups.find(( g ) => g.name.toLowerCase().includes( namePart ));
+    const idle = findAnim("idle");
+    const walk = findAnim("walk");
+    const run = findAnim("run");
+
+    if ( idle ) idle.start( true );
+
+    const keys = { w: false, a: false, s:false, d: false };
+    const moveSpeed = 0.08;
+
+    const setKey = ( e, down ) => {
+        const k = e.key.toLowerCase();
+        if( k in keys ) keys[k] = down;
+    };
+
+    window.addEventListener("keydown", ( e ) => {
+        setKey( e, true );
+    });
+
+    window.addEventListener("keyup", ( e ) => {
+        setKey(e, false);
+    });
+
+    scene.onBeforeRenderObservable.add(() => {
+        const up = BABYLON.Axis.Y;
+        const f = camera.getForwardRay().direction.clone();
+        f.y = 0;
+        if(!f.equals(BABYLON.Vector3.Zero())) f,normalize();
+        const right = BABYLON.Vector3.Cross(up, f).normalize();
+
+        const move = BABYLON.Vector3.Zero();
+        if(keys.w) move = move.add(f);
+        if(keys.s) move = move.subtract(f);
+        if(keys.a) move = move.subtract(right);
+        if(keys.d) move = move.add(right);
+
+        if(!move.equals(BABYLON.Vector3.Zero())){
+            move = move.normalize().scale(moveSpeed);
+            collider.moveWithCollisions(move);
+        }
+    })
+
+
+    
     
 
 
