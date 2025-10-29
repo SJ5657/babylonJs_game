@@ -103,14 +103,28 @@ const createScene = async () => {
         if(!move.equals(BABYLON.Vector3.Zero())){
             move = move.normalize().scale(moveSpeed);
             collider.moveWithCollisions(move);
+            
+            const yaw = Math.atan2(move.x, move.z);
+            visualRoot.rotation.y = yaw;
+
+
+            if( walk && ( !walk.isPlaying ) || idle && ( idle.isPlaying )){
+                idle.stop();
+                walk.start(true);
+            }
+        } else {
+            if( idle && !idle.isPlaying ){
+                if( walk && walk.isPlaying ) walk.stop();
+                idle.start(true);
+            }
         }
-    })
+    });
 
+    return scene;
+};
 
-    
-    
-
-
-
-
-}
+createScene().then(( secne ) => {
+    engine.runRenderLoop(() => {
+        secne.render();
+    } )
+});
