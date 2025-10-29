@@ -1,107 +1,131 @@
-import * as Babylon from 'babylonjs';
+import * as BABYLON from 'babylonjs';
+import 'babylonjs-loaders'; 
+import modelUrl from './assets/player.glb';
 
-const canvas = document.getElementById('canvase_viewer');
+const canvas = document.getElementById('canvas_3d_viewer');
+const engine = new BABYLON.Engine(canvas, true);
 
-//엔진 생성 (두번째 인자값: 안티앨리어싱 허용);
-const engine = new Babylon.Engine(canvas, true);
+const createScene = async () => {
+    const scene = new BABYLON.Scene(engine);
+    //헨더링할때마다 적용되는 씬 배경색
+    scene.clearColor = new BABYLON.Color4(0.5, 0.7, 1.0, 1.0);
 
-const createScene = () => {
-    //씬 생성
-    const scene = new Babylon.Scene(engine);
-    scene.clearColor = new Babylon.Color3(0.5, 0.7, 1.0);
 
-    //조명 생성
-    // HemisphericLight: 장면 전체에 부드럽고 균일한 빛을 주는 기본 조명 (하늘빛 느낌)
-    // 첫 번째 인자는 조명 이름, 두 번째 인자는 빛이 오는 방향 벡터
-    const light = new Babylon.HemisphericLight(
-        'light',                        // 조명 이름
-        new Babylon.Vector3(1, 1, 0),   // 빛이 오는 방향 백터
-        scene                           // 추가되는 scene객체
+    //충돌시스템
+    scene.collisionsEnabled = true;
+
+    //카메라 (FollowCamera로 캐릭터 추적)
+    const dummy = new BABYLON.TransformNode('dummy', scene);    //초기 타겟 (로드 전 임시)
+    const camera = new BABYLON.FollowCamera('cam', new BABYLON.Vector3(0, 5, -10), scene, dummy);
+    camera.radius = 6;                  //타겟간 거리차
+    camera.heightOffset = 2;            //타겟간 높이차
+    camera.rotationOffset = 0;          //타겟 바라보는 방향 (타겟 뒤로 설정 (TPS))
+    camera.cameraAcceleration = 0.05;   //타겟을 따라가는 가속도 (부드럽게 따라감)
+    camera.maxCameraSpeed = 20;
+    camera.attachControl(canvas, true);
+
+    //조명
+    new BABYLON.HemisphericLight("light",new BABYLON.Vector3(1, 1, 0), scene);
+
+    //바닥 (충돌가능)
+    const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 40, height: 40}, scene);
+    ground.checkCollisions = true;
+
+    // ==== GLB 캐릭터 로드 ====
+    // 파일 위치에 맞게 경로/파일명 수정
+    const result = await BABYLON.ImportMeshAsync("", "", modelUrl, scene);
+
+    const visualRoot = new BABYLON.TransformNode("visualRoot", scene);
+    result.meshes.forEach(m => {
+        if( m instanceof BABYLON.Mesh && m.name !== "visualRoot" ){
+            m.parent = visualRoot
+        }
+    });
+    //크기/원점 보정(원본 유지)
+    visualRoot.scaling = new BABYLON.Vector3(1, 1, 1);
+    //발이 지면 바로 위에 오도록, 캐릭터 y위치 변경
+    visualRoot.position.y = -0.9;
+
+    //캐릭터 충돌영역 생성
+    const collider = BABYLON.MeshBuilder.CreateBox(
+        "playerCollider",
+        { width: 0.8, depth: 0.8, height: 1.8 }
     );
+    collider.isVisible = false;
+    collider.position = new BABYLON.Vector3(0, 0.9, 0);
+    collider.checkCollisions = true;
+    //실질적인 충돌영역설정(타원체 크기)
+    collider.ellipsoid = new BABYLON.Vector3(0.4, 0.9, 0.4);
+    collider.ellipsoidOffset = new BABYLON.Vector3(0, 0.9, 0);
 
+    //로드된 캐릭터를 콜라이더에 붙임
+    visualRoot.parent = collider;
 
-    //플레이어 생성
-    const player = Babylon.MeshBuilder.CreateBox(
-        'Player', 
-        { size: 1 }, 
-        scene
-    );
-    player.position.y = 0.5;
+    //카메라 타겟을 콜라이더로 변경(캐릭터 중심 추적)
+    camera.lockedTarget = collider;
 
+    const groups = result.animationGroups || [];
+    const findAnim = ( namePart ) => groups.find(( g ) => g.name.toLowerCase().includes( namePart ));
+    const idle = findAnim("idle");
+    const walk = findAnim("walk");
+    const run = findAnim("run");
 
-    //플레이어를 따라다니는 카메라
-    const camera = new Babylon.FollowCamera(
-        "cam",
-        new Babylon.Vector3(0, 5, -10),
-        scene,
-        player
-    );
+    if ( idle ) idle.start( true );
 
+    const keys = { w: false, a: false, s:false, d: false };
+    const moveSpeed = 0.08;
 
-    // 바닥 생성 
-    const ground = Babylon.MeshBuilder.CreateGround(
-        "ground",
-        { 
-            width: 20,
-            height: 20
-        },
-        scene
-    );
-
-    //이동변수
-    const moveSpeed = 0.1;
-    const keys = {
-        w: false,
-        a: false,
-        s: false,
-        d: false
+    const setKey = ( e, down ) => {
+        const k = e.key.toLowerCase();
+        if( k in keys ) keys[k] = down;
     };
 
-    window.addEventListener('keydown', ( e ) => {
-        const key = e.key.toLowerCase();
-        if( keys.hasOwnProperty(key) ) {
-            keys[key] = true;
-        };
+    window.addEventListener("keydown", ( e ) => {
+        setKey( e, true );
     });
 
-    window.addEventListener('keyup', ( e ) => {
-        const key = e.key.toLowerCase();
-        if(keys.hasOwnProperty(key)) {
-            keys[key] = false;
+    window.addEventListener("keyup", ( e ) => {
+        setKey(e, false);
+    });
+
+    scene.onBeforeRenderObservable.add(() => {
+        const up = BABYLON.Axis.Y;
+        const f = camera.getForwardRay().direction.clone();
+        f.y = 0;
+        if(!f.equals(BABYLON.Vector3.Zero())) f.normalize();
+        const right = BABYLON.Vector3.Cross(up, f).normalize();
+
+        let move = BABYLON.Vector3.Zero();
+        if(keys.w) move = move.add(f);
+        if(keys.s) move = move.subtract(f);
+        if(keys.a) move = move.subtract(right);
+        if(keys.d) move = move.add(right);
+
+        if(!move.equals(BABYLON.Vector3.Zero())){
+            move = move.normalize().scale(moveSpeed);
+            collider.moveWithCollisions(move);
+            
+            const yaw = Math.atan2(move.x, move.z);
+            visualRoot.rotation.y = yaw;
+
+
+            if( walk && ( !walk.isPlaying || (idle &&  idle.isPlaying ))){
+                idle.stop();
+                walk.start(true);
+            }
+        } else {
+            if( idle && !idle.isPlaying ){
+                if( walk && walk.isPlaying ) walk.stop();
+                idle.start(true);
+            }
         }
     });
 
-    //프레임 갱신 전에 실행되는 콜백함수 등록
-    scene.onBeforeRenderObservable.add(() => {
-        //getForwardRay: 카메라가 바라보는 방향 벡터값(Babylon.Ray 객체) 반환
-        const forward = camera.getForwardRay().direction;
-
-        //Babylon.Vector3.Cross: 백터 외적 생성 함수 
-        //Vector3.normalize(): 백터의 방향은 그대로 두고, 크기 및 길이를 1로 수정
-        const right = Babylon.Vector3.Cross( Babylon.Axis.Y, forward ).normalize();
-
-        let move = Babylon.Vector3.Zero();
-
-        if ( keys.w ) move = move.add( forward );
-        if ( keys.s ) move = move.subtract( forward );
-        if ( keys.a ) move = move.subtract( right );
-        if ( keys.d ) move = move.add( right );
-
-        move.y = 0;
-        move.normalize();
-
-        //플레이어 이동 (충돌방지)
-        player.moveWithCollisions( move.scale( moveSpeed ) ); 
-    });
-
     return scene;
-}
+};
 
-const scene = createScene();
-
-//engine.runRenderLoop: 프레임 자동 갱신 허용
-engine.runRenderLoop(() => {
-    scene.render() // 프레임마다 실행할 콜백함수 등록 
+createScene().then(( scene ) => {
+    engine.runRenderLoop(() => {
+        scene.render();
+    })
 });
-
-window.addEventListener("resize", () => engine.resize());
